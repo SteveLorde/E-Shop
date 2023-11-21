@@ -1,3 +1,4 @@
+import { FormRequest } from "@/app/Auth/Models/FormRequest"
 import { User } from "@/app/Data/Models/User"
 
 export let isloggedin : boolean = false
@@ -8,12 +9,19 @@ export let currentuser : User = {
     usertype: "user"
 }
 
-export async function Login(){
-
+interface formrequest {
+    username: string
+    password: string
 }
 
-export async function Register(){
+export async function Login(loginrequest : FormRequest){
+    let check = await fetch('http')
+    return check
+}
 
+export async function Register(formrequest : formrequest){
+    let checkregister = await fetch('')
+    return true
 }
 
 export function Logout() {

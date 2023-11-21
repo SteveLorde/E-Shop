@@ -1,10 +1,15 @@
+'use client'
 import Link from "next/link";
 import { useState } from "react";
 
 function Shop() {
 
-    //const [shoppingcategories, SetShoppingCategories] = useState<string[]>([])
+    const [shoppingcategories, SetShoppingCategories] = useState<string[]>([])
 
+
+    function GetCategories() {
+        
+    }
     
     return <>
     <div>

@@ -1,0 +1,22 @@
+.carousel {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .slideContainer {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .slide {
+    min-width: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .activeSlide {
+    transform: translateX(-100%);
+  }

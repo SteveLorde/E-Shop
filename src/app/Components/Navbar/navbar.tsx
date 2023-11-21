@@ -2,7 +2,9 @@
 
 import styling from "@/app/Components/Navbar/styling.module.css"
 import Link from "next/link"
+
 import { useState } from "react"
+import {Product} from "@/app/Data/Models/Product";
 
 
 export function Navbar() {
@@ -19,6 +21,11 @@ export function Navbar() {
             <div>
                 <input className={styling.searchbar} type="text" placeholder="Search product..."></input>
             </div>
+
+            <div>
+                <img />
+            </div>
+
             <div>
                 <img src={''} />
                 <Link className={styling.navitem} href={'/Authenticate'}>Login/Register</Link>

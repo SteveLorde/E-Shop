@@ -1,7 +1,9 @@
+import {Product} from "@/app/Data/Models/Product";
+
 export let Cart : Product[] = []
 
 
-export async function AddToCart(Product producttoadd) {
+export async function AddToCart(producttoadd : Product) {
     //1
 
     //2-
