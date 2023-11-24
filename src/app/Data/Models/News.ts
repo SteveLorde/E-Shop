@@ -2,5 +2,6 @@ export interface News {
     title : string
     subtitle? : string
     body? : string
-    date : string
+    date? : string
+    image? : string
 }

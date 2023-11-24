@@ -1,0 +1,4 @@
+.sidecategorylayout {
+    display: flex;
+    flex-direction: row;
+}

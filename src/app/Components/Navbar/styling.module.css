@@ -16,10 +16,48 @@
     margin: 10px;
 }
 
+.navitem:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+
 .searchbar {
     border-radius: 25px;
-    background-color: white;
-    border: 5px solid rgb(75, 75, 75);
+    border: 2px solid rgba(75, 75, 75, 0.75);
     padding: 5px;
     color: black;
+    cursor: pointer;
+}
+
+.searchbar:hover {
+    background-color: rgba(168, 168, 168, 0.2);
+}
+
+.cart {
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: #888888;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    gap: 50px;
+    border-radius: 100px;
+}
+
+.cart:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+
+.carticon {
+    width: 40px;
+}
+
+.cartquantity {
+
 }
