@@ -5,6 +5,8 @@ import { Navbar } from './Components/Navbar/navbar'
 import FooterBar from "@/app/Components/FooterBar/FooterBar";
 import {StoreProvider} from "@/app/Services/StateStore/StoreProvider";
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {SSRProvider} from "react-bootstrap";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,13 +22,16 @@ export default function RootLayout({
 }) {
   return (
     <StoreProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <Navbar></Navbar>
-          {children}
-          <FooterBar></FooterBar>
-        </body>
-      </html>
+
+        <html lang="en">
+          <body className={inter.className}>
+
+            <Navbar></Navbar>
+            {children}
+            <FooterBar></FooterBar>
+          </body>
+        </html>
+
     </StoreProvider>
   )
 }

@@ -42,7 +42,7 @@ export function Navbar() {
 
             <div className={styling.cart}>
                 <img className={styling.carticon} alt='' src="/Icons/shopping-cart.svg"/>
-                {AllQuantity !=0 &&  <h3 className={styling.cartquantity}>{AllQuantity}</h3>}
+                {cartItems.length > 0 &&  <h3 className={styling.cartquantity}>{cartItems.length}</h3>}
             </div>
 
             <div>
