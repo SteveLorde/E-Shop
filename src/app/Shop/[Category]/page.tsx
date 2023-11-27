@@ -5,8 +5,20 @@ import Link from "next/link";
 
 
 export async function Page( {params} : {params: {category : string}}) {
+    const productscategory = params.category
+    let categoryproducts : Product[] = []
 
-    const categoryproducts : Product[] = await backendservice.GetProductsOfCategory(params.category)
+    async function getproducts(category : string) {
+        try {
+            categoryproducts = []
+            categoryproducts = await backendservice.GetProductsOfCategory(category)
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+    await getproducts(productscategory)
 
     return <>
         <div></div>

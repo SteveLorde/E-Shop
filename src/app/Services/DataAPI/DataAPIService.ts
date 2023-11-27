@@ -9,15 +9,16 @@ export async function GetCategories() {
     return shopcategories
 }
 
-export async function GetCategoriesTest() {
-    let shopcategoriestest = ['category1','category2','category3','category4','category5']
-    return shopcategoriestest
-}
-
 export async function GetProductsOfCategory(category : string) {
     let response = await fetch(`http://localhost:5171/Warehouse/${category}`)
     let parsedresponse : Product[] =  await response.json()
     return parsedresponse
+}
+
+export async function GetProduct(productid : number) {
+    let response = await fetch(`http://localhost:5171/Warehouse/GetProduct/${productid}`)
+    let productdata = await response.json()
+    return productdata
 }
 
 export async function GetMostSelling() {

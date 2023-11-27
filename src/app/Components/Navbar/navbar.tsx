@@ -6,6 +6,8 @@ import * as authservice from '@/app/Services/Authentication/AuthService'
 
 import {useEffect, useState} from "react"
 import {Product} from "@/app/Data/Models/Product";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "@/app/Services/StateStore/Store";
 
 
 export function Navbar() {
@@ -13,7 +15,8 @@ export function Navbar() {
     const [shoppingcart, SetShoppingCart] = useState<Product[]>([])
     const [AllQuantity, setCartQuantity] = useState<number>(0)
     const [authstatus, setAuthStatus] = useState<string>('Login/Register')
-
+    const cartItems = useSelector( (state: RootState) => state.cart.items)
+    const dispatch = useDispatch<AppDispatch>()
     function CheckAuthStatus() {
         if (!authservice.isloggedin) {
             setAuthStatus('Login/Register')
