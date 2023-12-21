@@ -6,7 +6,7 @@ import * as backendservice from '@/app/Services/DataAPI/DataAPIService'
 export default async function Product({params}: {params : {productid : number}}) {
 
     let productid : number = params.productid
-    let product : Product = await backendservice.GetProduct(productid)
+    let product : Product | any = await backendservice.GetProduct(productid)
     let image : string = " "
 
     async function AddToCart(product: Product | undefined) {
@@ -36,7 +36,7 @@ export default async function Product({params}: {params : {productid : number}})
             {/* Buy */}
             <div>
                 <button >Add to Cart</button>
-                <p>Available Quantity: {product?.quantity}</p>
+                <p>Available Quantity: {product?.quantityavailable}</p>
             </div>
         </div>
     </>

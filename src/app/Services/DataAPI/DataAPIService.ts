@@ -4,6 +4,7 @@ import {News} from "@/app/Data/Models/News";
 import axios from "axios";
 import {Category} from "@/app/Data/Models/Category";
 import {NewProductRequest} from "@/app/Components/AddProductForm/AddProductForm";
+import {Mail} from "@/app/Data/Models/Mail";
 
 const apiurl = process.env.NEXT_PUBLIC_API_URL
 

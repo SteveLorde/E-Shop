@@ -22,7 +22,7 @@ export default function AddProductForm() {
     const {register: newproductform, handleSubmit: newproductsubmit } = useForm<NewProductRequest>()
 
     async function GetCategories() {
-        let categories = await backendservice.GetCategories()
+        let categories : Category[] | any = await backendservice.GetCategories()
         setCategories(categories)
     }
 

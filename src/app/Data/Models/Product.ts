@@ -7,7 +7,7 @@ export interface Product {
     price : number
     images : string[]
     quantityavailable : number
-    sellnumber? : number
-    imagefiles?: File[]
+    sellnumber : number
+    imagefiles: File[]
 
 }
