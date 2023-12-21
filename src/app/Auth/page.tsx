@@ -1,16 +1,25 @@
-'use server'
+'use client'
 import * as authservice from '@/app/Services/Authentication/AuthService'
 import { FormRequest } from './Models/FormRequest';
+import {useState} from "react";
 
 
-export async function AuthLanding() {
+export default function Page() {
 
+    const [isregisterformhidden, setRegisterVisible] = useState<boolean>(true);
+    const [isloginformhidden, setLoginVisible] = useState<boolean>(false);
 
     let formrequest : FormRequest
 
-
-    function ToggleForm() {
-        document.getElementById('registerform')
+    async function ToggleForm() {
+        if (isregisterformhidden == true) {
+            setRegisterVisible(false)
+            setLoginVisible(true)
+        }
+        else {
+            setRegisterVisible(true)
+            setLoginVisible(false)
+        }
     }
 
     async function Login(FormData : FormData) {
@@ -37,13 +46,11 @@ export async function AuthLanding() {
         }
     }
 
-
-
     return <>
-            <div id='loginform' className="loginform">
-                <button>Not Registered? click here</button>
+            <div hidden={isloginformhidden} id='loginform' className="loginform">
+                <button onClick={ () => ToggleForm()}>Not Registered? click here</button>
                 <h2>Login</h2>
-                <form className={'form'} action={Login}>
+                <form className={'form'}  action={Login}>
                     <h3 className={'inputtitle'}>Username</h3>
                     <input type="text" name='username'/>
                     <h3 className={'inputtitle'}>Password</h3>
@@ -52,10 +59,10 @@ export async function AuthLanding() {
                 </form>
             </div> 
 
-            <div id='registerform' className="registerform">
-                <button >Already Registered? Login</button>
+            <div hidden={isregisterformhidden} id='registerform' className="registerform">
+                <button onClick={ () => ToggleForm()} >Already Registered? Login</button>
                 <h2>Register Account</h2>
-                <form className={'form'} action={Register}>
+                <form className={'form'} action={Register}  >
                     <h3 className={'inputtitle'}>Username</h3>
                     <input type="text" />
                     <h3 className={'inputtitle'}>Password</h3>

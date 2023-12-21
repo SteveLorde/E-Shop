@@ -5,35 +5,21 @@ import Link from "next/link";
 
 
 export async function Page( {params} : {params: {category : string}}) {
+
     const productscategory = params.category
-    let categoryproducts : Product[] = []
-
-    async function getproducts(category : string) {
-        try {
-            categoryproducts = []
-            categoryproducts = await backendservice.GetProductsOfCategory(category)
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
-
-    await getproducts(productscategory)
+    let categoryproducts : Product[] = await backendservice.GetProductsOfCategory(productscategory)
 
     return <>
-        <div></div>
         <div>
-            {categoryproducts?.map( (product : Product, index) =>
-                <div key={index}>
-                    <img src={`/api/storage/${product.id}/${product.images[0]}`} />
+            {categoryproducts?.map( (product : Product) =>
+                <Link href={`/Shop/Product/${product.id}`} key={product.id}>
+                    <img src={ process.env.API_URL + `/Products/${product.id}/Images/${product.images[0]}`} />
                     <div>
+                        { product.sellnumber > 100 && <p>most selling in {product.category}</p>}
                         <h2>{product.name}</h2>
                     </div>
-                    <div>
-                        {product.price}
-                    </div>
-                </div>
-
+                    <p>{product.price}</p>
+                </Link>
             )}
         </div>
     </>

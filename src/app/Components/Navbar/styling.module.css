@@ -24,14 +24,41 @@
 .searchbar {
     border-radius: 25px;
     border: 2px solid rgba(75, 75, 75, 0.75);
-    padding: 5px;
+    padding: 8px;
     color: black;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: center;
+}
+
+.searchinput {
+    border: none;
+    background-color: white;
+}
+
+.searchinput:focus {
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.searchinput:hover {
+    border: none;
+}
+
+.searchicon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .searchbar:hover {
     background-color: rgba(168, 168, 168, 0.2);
 }
+
 
 .cart {
     padding: 5px;

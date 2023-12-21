@@ -2,16 +2,14 @@
 import Link from "next/link";
 import * as backendservice from '@/app/Services/DataAPI/DataAPIService'
 import {Product} from "@/app/Data/Models/Product";
+//import {useEffect, useState} from "react";
 
-function Shop() {
-    
-    let categories : string[] = []
-    let mostsellingproducts : Product[] = []
-    
-    async function GetCategories() {
-        return await backendservice.GetCategoriesTest()
-    }
-    
+export default async function Shop() {
+
+    console.log(process.env.NEXT_PUBLIC_API_URL)
+    let categories : string[] | any = await backendservice.GetParentCategories()
+    let allproducts : Product[] | any = await backendservice.GetProducts()
+
     return <>
     <div>
         <h1>TEST SHOP PAGE</h1>
@@ -24,19 +22,19 @@ function Shop() {
         <div>
 
             <div>
-                {mostsellingproducts?.map( (product : Product) =>
+                {allproducts?.map( (product : Product) =>
                     <div key={product.name}>
-
+                        <img />
+                        <h2>{product.name}</h2>
+                        <div>
+                            <p>{product.price}</p>
+                        </div>
                     </div>
                 )}
             </div>
 
         </div>
-
-
     </div>
     </>  
     
 }
-
-export default Shop;

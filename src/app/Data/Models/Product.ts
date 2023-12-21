@@ -1,10 +1,13 @@
 export interface Product {
-    id : number
+    id : string
     name : string
     category : string
     description : string
+    bardcode : string
     price : number
     images : string[]
-    quantity : number
-    sellstatus : number
+    quantityavailable : number
+    sellnumber? : number
+    imagefiles?: File[]
+
 }
