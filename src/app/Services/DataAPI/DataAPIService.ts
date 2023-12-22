@@ -7,7 +7,7 @@ import {NewProductRequest} from "@/app/Components/AddProductForm/AddProductForm"
 import {Mail} from "@/app/Data/Models/Mail";
 import {Bool} from "reselect/es/types";
 
-const apiurl = process.env.NEXT_PUBLIC_API_URL
+export const apiurl = process.env.NEXT_PUBLIC_API_URL
 
 export async function GetProducts() {
     try {

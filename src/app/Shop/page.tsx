@@ -7,8 +7,6 @@ import styling from "@/app/Shop/styles.module.css"
 //import {useEffect, useState} from "react";
 
 export default async function Shop() {
-
-    console.log(process.env.NEXT_PUBLIC_API_URL)
     let parentcategories : ParentCategory[] | any = await backendservice.GetParentCategories()
     let allproducts : Product[] | any = await backendservice.GetProducts()
 
@@ -31,7 +29,7 @@ export default async function Shop() {
             <div className={styling.allproductsgrid}>
                 {allproducts?.map( (product : Product) =>
                     <Link href={`Shop/Product/${product.id}`} className={styling.productgriditem} key={product.name}>
-                        <img className={styling.productimage} src={ process.env.NEXT_PUBLIC_API_URL + `/storage/Products/${product.id}/Images/${product.images[0]}`} />
+                        <img className={styling.productimage} src={`${backendservice.apiurl}/storage/Products/${product.id}/Images/${product.images[0]}`} />
                         <h2>{product.name}</h2>
                         <div>
                             <p>{product.price}</p>
@@ -42,6 +40,7 @@ export default async function Shop() {
 
         </div>
     </div>
+
     </>  
     
 }
