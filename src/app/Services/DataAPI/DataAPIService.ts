@@ -2,9 +2,10 @@ import {Product} from "@/app/Data/Models/Product";
 import {element} from "prop-types";
 import {News} from "@/app/Data/Models/News";
 import axios from "axios";
-import {Category} from "@/app/Data/Models/Category";
+import {Category, ParentCategory} from "@/app/Data/Models/Category";
 import {NewProductRequest} from "@/app/Components/AddProductForm/AddProductForm";
 import {Mail} from "@/app/Data/Models/Mail";
+import {Bool} from "reselect/es/types";
 
 const apiurl = process.env.NEXT_PUBLIC_API_URL
 
@@ -19,9 +20,20 @@ export async function GetProducts() {
     }
 }
 
+export async function GetProduct(productid : string) {
+    try {
+        let response = await axios.get(`${apiurl}/Warehouse/GetProduct/${productid}`)
+        let product : Product = response.data
+        return product
+    }
+    catch (err) {
+        console.log("error fetching product")
+    }
+}
+
 export async function SearchProduct(searchname : string) {
     try {
-        let response = await axios.get(process.env.NEXT_PUBLIC_API_URL + `/Warehouse/SearchProduct/${searchname}`)
+        let response = await axios.get(`${apiurl}/Warehouse/SearchProduct/${searchname}`)
         let searchedproducts : Product[] = response.data
         return searchedproducts
     }
@@ -30,31 +42,41 @@ export async function SearchProduct(searchname : string) {
     }
 }
 
-export async function GetParentCategories() {
+export async function AddProduct(newproduct : Product) {
     try {
-        let response = await axios.get(process.env.NEXT_PUBLIC_API_URL + `/Warehouse/GetParentCategories`)
-        let categories : string[] = response.data
-        return categories
-    }
-    catch (err) {
-        console.log("ERROR 404 FETCHING CATEGORIES")
+        await axios.post(`${apiurl}/Warehouse/AddProduct`, newproduct)
+    } catch (err) {
+        console.log(err)
     }
 }
 
-export async function GetCategories() {
+//---------------------------------------------------------------------
+
+export async function GetParentCategories() {
     try {
-        let response = await axios.get(process.env.NEXT_PUBLIC_API_URL + `/Warehouse/GetCategories`)
+        let response = await axios.get(`${apiurl}/Warehouse/GetParentCategories`)
+        let parentcategories : ParentCategory[] = response.data
+        return parentcategories
+    }
+    catch (err) {
+        console.log("ERROR 404 FETCHING Parent CATEGORIES")
+    }
+}
+
+export async function GetCategories(parentcategoryid: string) {
+    try {
+        let response = await axios.get(`${apiurl}/Warehouse/GetCategories/${parentcategoryid}`)
         let categories : Category[] = response.data
         return categories
     }
     catch (err) {
-        console.log("ERROR 404 FETCHING CATEGORIES")
+        console.log("error fetching sub categories")
     }
 }
 
-export async function GetProductsOfCategory(parentcategoryid : string) {
+export async function GetProductsOfCategory(categoryid : string) {
     try {
-        let response = await axios.get(process.env.NEXT_PUBLIC_API_URL + `/Warehouse/GetProductsOfParentCategory/${parentcategoryid}`)
+        let response = await axios.get(`${apiurl}/Warehouse/GetProductsOfParentCategory/${categoryid}`)
         let categoryproducts = response.data
         return categoryproducts
     }
@@ -63,31 +85,11 @@ export async function GetProductsOfCategory(parentcategoryid : string) {
     }
 }
 
-export async function GetProductsOfSubCategory(subcategoryid : string) {
-    try {
-        let response = await axios.get(process.env.NEXT_PUBLIC_API_URL + `/Warehouse/GetProductsOfSubCategory/${subcategoryid}`)
-        let categoryproducts = response.data
-        return categoryproducts
-    }
-    catch (err) {
-        console.log(err)
-    }
-}
-
-export async function GetProduct(productid : number) {
-    try {
-        let response = await axios.get(process.env.NEXT_PUBLIC_API_URL + `/Warehouse/GetProduct/${productid}`)
-        let product : Product = response.data
-        return product
-    }
-    catch (err) {
-        console.log(err)
-    }
-}
+//---------------------------------------------------------------------
 
 export async function GetMostSelling() {
     try {
-        let response = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/Warehouse/MostSelling')
+        let response = await axios.get(`${apiurl}/Warehouse/MostSelling`)
         let mostselling : Product[] = response.data
         return mostselling
     }
@@ -106,20 +108,19 @@ export async function GetNews() {
     }
 }
 
-    export async function AddProduct(newproduct : Product) {
-        try {
-            await axios.post(process.env.NEXT_PUBLIC_API_URL + '/Warehouse/AddProduct', newproduct)
-        } catch (err) {
-            console.log(err)
-        }
-    }
+//---------------------------------------------------------------------
 
 export async function SendMail(newmail : Mail) {
     try {
-        await axios.post(process.env.NEXT_PUBLIC_API_URL + '/Mail/SendMail', newmail)
+        let response = await axios.post(process.env.NEXT_PUBLIC_API_URL + '/Mail/SendMail', newmail)
+        let check : Boolean = response.data
+        return check
     } catch (err) {
         console.log(err)
     }
+
+
+
 }
 
 

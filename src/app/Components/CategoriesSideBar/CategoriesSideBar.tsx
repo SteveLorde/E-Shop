@@ -1,9 +1,13 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 import * as backendservice from "../../Services/DataAPI/DataAPIService"
 import {Category} from "@/app/Data/Models/Category";
 
 export default function CategoriesSideBar() {
+
+    /*
+
+    WORK IN PROGRESS
 
     const [categories, setCategories] = useState<Category[]>([])
 
@@ -12,13 +16,17 @@ export default function CategoriesSideBar() {
         setCategories(categories)
     }
 
+    useEffect(() => {
+        GetCategories()
+    }, []);
+
     return <>
         <h2>Categories</h2>
         <ul>
             {categories?.map( (category : Category) =>
-                <Link key={category.id} href={`/Shop/${category}`}>{category.parentcategory.name}</Link>
+                <Link key={category.id} href={`/Shop/${category.parentcategoryname}`}>{category.parentcategoryname}</Link>
             )}
         </ul>
     </>
-
+     */
 }

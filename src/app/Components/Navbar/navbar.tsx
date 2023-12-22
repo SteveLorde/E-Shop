@@ -42,11 +42,12 @@ export function Navbar() {
 
     return <>
         <div className={styling.navbar}>
-            <ul>
+            <ul className={styling.links}>
                 <Link className={styling.navitem} href={'/'}>Home</Link>
                 <Link className={styling.navitem} href={'/Shop'}>Shop</Link>
-                <Link className={styling.navitem} href={''}>Extra</Link>
+                <Link className={styling.navitem} href={'/Contact'}>Contact</Link>
             </ul>
+
             <div className={styling.searchbar}>
                 <input className={styling.searchinput}  type="text" value={searchinput} onChange={handleinputchange}>
                 </input>
@@ -60,7 +61,7 @@ export function Navbar() {
 
             <div>
                 <img alt='' src={''}/>
-                <Link className={styling.navitem} href={'/Auth'}>{authstatus}</Link>
+                <Link className={styling.authbutton} href={'/Auth'}>{authstatus}</Link>
             </div>
         </div>
     </>

@@ -22,7 +22,7 @@
 }
 
 .innercarouselitem{
-    height: 500px;
+    height: 600px;
     display: flex;
 }
 
@@ -41,9 +41,16 @@
 }
 
 .mostsellingcanvaas {
-    background-color: red;
+    background-color: #dedede;
     flex-direction: row;
     flex: 1;
+}
+
+.mostsellingheader {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: 50px;
+    font-weight: bold;
 }
 
 .movingcards {
@@ -55,17 +62,27 @@
 .productcard {
     margin: 12px;
     border-radius: 20px;
-    background-color: #888888;
+    background-color: #cecece;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    text-decoration: none;
 }
 
 .productimage {
-    border-radius: 20px 20px 0px 0px;
-    width: 150px;
     flex: 1;
+    border-radius: 20px 20px 0px 0px;
+    width: max(250px);
+    height: max(50px);
+}
+
+.cardtext {
+    text-decoration: none;
+    text-underline-mode: none;
+    text-underline: none;
+    color: black;
+    font-size: 16px;
 }
 
 

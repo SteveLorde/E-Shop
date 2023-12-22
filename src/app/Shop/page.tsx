@@ -2,34 +2,41 @@
 import Link from "next/link";
 import * as backendservice from '@/app/Services/DataAPI/DataAPIService'
 import {Product} from "@/app/Data/Models/Product";
+import {Category, ParentCategory} from "@/app/Data/Models/Category";
+import styling from "@/app/Shop/styles.module.css"
 //import {useEffect, useState} from "react";
 
 export default async function Shop() {
 
     console.log(process.env.NEXT_PUBLIC_API_URL)
-    let categories : string[] | any = await backendservice.GetParentCategories()
+    let parentcategories : ParentCategory[] | any = await backendservice.GetParentCategories()
     let allproducts : Product[] | any = await backendservice.GetProducts()
 
     return <>
-    <div>
-        <h1>TEST SHOP PAGE</h1>
-        <div className={'categories'}>
-            {categories?.map( (category : string) => 
-                <Link key={category} href={`Shop/${category}`}>{category}</Link>
-            )}
+
+    <div className={styling.shoppage}>
+
+        <div className={"categorysidebar"}>
+            <h3>Categories</h3>
+            <div className={"categories"}>
+                {parentcategories?.map( (parentcategory : ParentCategory) =>
+                    <Link className={"categorylink"} key={parentcategory.id} href={`/Shop/${parentcategory.id}`}>{parentcategory.name}</Link>
+                )}
+            </div>
         </div>
+
 
         <div>
 
-            <div>
+            <div className={styling.allproductsgrid}>
                 {allproducts?.map( (product : Product) =>
-                    <div key={product.name}>
-                        <img />
+                    <Link href={`Shop/Product/${product.id}`} className={styling.productgriditem} key={product.name}>
+                        <img className={styling.productimage} src={ process.env.NEXT_PUBLIC_API_URL + `/storage/Products/${product.id}/Images/${product.images[0]}`} />
                         <h2>{product.name}</h2>
                         <div>
                             <p>{product.price}</p>
                         </div>
-                    </div>
+                    </Link>
                 )}
             </div>
 

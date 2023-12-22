@@ -3,10 +3,9 @@ import {Product} from "@/app/Data/Models/Product"
 import * as backendservice from '@/app/Services/DataAPI/DataAPIService'
 
 
-export default async function Product({params}: {params : {productid : number}}) {
+export default async function Product({params}) {
 
-    let productid : number = params.productid
-    let product : Product | any = await backendservice.GetProduct(productid)
+    let product : Product | any = await backendservice.GetProduct(params.Product)
     let image : string = " "
 
     async function AddToCart(product: Product | undefined) {

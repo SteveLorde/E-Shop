@@ -10,3 +10,18 @@ body {
 h1,h2,h3,p {
   font-family: Dubai, serif;
 }
+
+.sidecategorylayout {
+  display: flex;
+  flex-direction: column;
+}
+
+.categorysidebar {
+  padding-left: 10px;
+  padding-right: 55px;
+}
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

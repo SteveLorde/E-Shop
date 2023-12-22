@@ -55,8 +55,6 @@ export default function Home() {
 
 
         return <>
-            <h1>HOME PAGE WORKING</h1>
-
             <div className={style.homelayout}>
                 {/* News Canvas */}
                 <div className={style.carouselcanvas}>
@@ -77,13 +75,15 @@ export default function Home() {
 
 
                 {/* Most Selling past 24 hours */}
+
                 <div className={style.mostsellingcanvaas}>
+                    <h3 className={style.mostsellingheader}>24Hrs Most Selling</h3>
                     <div className={style.movingcards}>
                     {mostselling24?.map((product: Product) =>
                         <Link href={`/Shop/Product/${product.id}`} className={style.productcard}>
                             <img className={style.productimage} src={ process.env.NEXT_PUBLIC_API_URL + `/storage/Products/${product.id}/Images/${product.images[0]}`}></img>
-                            <h2>{product.name}</h2>
-                            <h3>Price: {product.price}</h3>
+                            <h2 className={style.cardtext}>{product.name}</h2>
+                            <h3 className={style.cardtext}>{product.price} Egp</h3>
                         </Link>
                     )}
                     </div>
