@@ -4,34 +4,56 @@ import {useFieldArray, useForm} from "react-hook-form";
 import * as backendservice from '../../../Services/DataAPI/DataAPIService'
 import {useState} from "react";
 import {Category, ParentCategory} from "@/app/Data/Models/Category";
+import {Product} from "@/app/Data/Models/Product";
 
 
 export interface NewProductRequest {
     name : string
-    category : string
+    category : Category
     description : string
     price : number
-    images? : string[]
+    images : string[]
+    barcode : string
     quantityavailable : number
     imagefiles?: File[]
 }
 
 export default function AddProductForm() {
-    const [categories, setCategories] = useState([])
+    const [categories, setCategories] = useState<ParentCategory[]>([])
     const {register: newproductform, handleSubmit: newproductsubmit } = useForm<NewProductRequest>()
+    let imagefiles : any
+    const [imagespreviews, setImagesPreviews] = useState([])
 
     async function GetCategories() {
-        let categories : Category[] | any = await backendservice.GetParentCategories()
-        setCategories(categories)
+        let categories = await backendservice.GetParentCategories()
+        if (categories != undefined) {
+            setCategories(categories)
+        }
     }
 
-    function handleImageUploadChange(e : any) {
-        const imagefiles = e.target.files
+    function handleImageUploadChange(event : React.ChangeEvent<HTMLInputElement>) {
+        imagefiles = event.target.files
     }
 
-    async function SubmitNewProduct(formdata : NewProductRequest) {
-        let newproduct = formdata
-        await backendservice.AddProduct(newproduct)
+    function OutputImages() {
+
+    }
+
+    async function SubmitNewProduct(newproductreq : NewProductRequest) {
+        let newproduct : Product = {} as Product
+        {
+            newproduct.name = newproductreq.name
+            newproduct.description = newproductreq.description
+            newproduct.price = newproductreq.price
+            newproduct.quantityavailable = newproductreq.quantityavailable
+            newproduct.category = newproductreq.category
+            newproduct.images = newproductreq.images
+            newproduct.bardcode = newproductreq.barcode
+        }
+        let check = await backendservice.AddProduct(newproduct)
+        if (check) {
+            //await backendservice.UploadProductImages(imagefiles)
+        }
     }
 
     return <>
@@ -53,12 +75,9 @@ export default function AddProductForm() {
             </select>
             <h2>Product Barcode</h2>
             <input type="text"  />
-
             <h2>price</h2>
             <input type='number' {...newproductform('price')} />
-
             <input type='submit' value="Add New Product" />
-
         </form>
     </>
 }

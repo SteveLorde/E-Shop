@@ -2,7 +2,7 @@
 import {Product} from "@/app/Data/Models/Product"
 import * as backendservice from '@/app/Services/DataAPI/DataAPIService'
 import styling from './styling.module.css'
-import Addbutton, {AddToCart} from './AddToCartButton'
+import Addbutton from './AddToCartButton'
 
 
 export default async function Product({params}) {
@@ -45,7 +45,7 @@ export default async function Product({params}) {
             <div className={styling.buysection}>
                 {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
                 <p>{product.price} egp</p>
-                <Addbutton productid={product.id} />
+                <Addbutton params={ {product: product}} />
                 <button className={styling.addtocart}></button>
             </div>
         </div>

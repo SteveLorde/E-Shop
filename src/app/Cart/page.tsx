@@ -5,6 +5,8 @@ import {CartItem} from "@/app/Data/Models/CartItem";
 import Link from "next/link";
 import {useEffect, useState} from "react";
 import CartSlice, {AddItem, clearCart, RemoveItem} from "@/app/Services/StateStore/CartSlice";
+import styling from "./styling.module.css"
+import {apiurl} from "@/app/Services/DataAPI/DataAPIService"
 
 export default function CartPage() {
     const [cartitems, setCartItems] = useState<CartItem[]>([])
@@ -15,7 +17,7 @@ export default function CartPage() {
 
 
     function setCart() {
-        setCartItems(cartitems)
+        setCartItems(cartitemsstore)
     }
 
     function CalculateTotalOrder() {
@@ -27,7 +29,7 @@ export default function CartPage() {
     }
 
     async function IncreaseItem(item : CartItem) {
-        dispatch(AddItem(item))
+        dispatch(AddItem(item.product))
     }
 
     async function DecreaseItem(item : CartItem) {
@@ -39,19 +41,24 @@ export default function CartPage() {
     }
 
     useEffect(() => {
+        setCart()
+    }, []);
+
+    useEffect(() => {
         CalculateTotalOrder()
     }, []);
 
     return <>
-        <div>
+        <div className={styling.cartpagecanvas}>
 
-            <div>
+            {/* CART SECTION*/}
+            <div className={styling.cartsection}>
                 <h3>Your Cart</h3>
                 <div>
                     {cartitems?.map( (item : CartItem, index) =>
                         <div key={index}>
                             <div >
-                                <img src={process.env.API_URL + `storage/Products/${item.product.id}/Images/${item.product.images[0]}`} />
+                                <img src={`${apiurl}/storage/Products/${item.product.id}/Images/${item.product.images[0]}`} />
                                 <p>{item.product.name}</p>
                                 <p>{item.quantity}</p>
                             </div>
@@ -62,12 +69,13 @@ export default function CartPage() {
                                 <p onClick={() => IncreaseItem(item)}>+</p>
                             </div>
                         </div>
-
                     )}
                 </div>
+                <button onClick={() => ClearCart() }>Clear Cart</button>
             </div>
 
-            <div>
+            {/* CHECKOUT SECTION*/}
+            <div className={styling.checkoutsection}>
                 <div>
 
                     <p>Import and Travel fees: +{importandtravelfees} </p>

@@ -21,7 +21,7 @@ export default async function Page( {params} : {params : {ProductName: string}})
                 <Link href={`/Shop/Product/${product.id}`} key={product.id}>
                     <img src={ process.env.API_URL + `/News/${product.id}/Images/${product.images[0]}`} />
                     <div>
-                        { product.sellnumber > 100 && <p>most selling in {product.category}</p>}
+                        { product.sellnumber > 100 && <p>most selling in {product.category.name}</p>}
                         <h2>{product.name}</h2>
                     </div>
                     <p>{product.price}</p>

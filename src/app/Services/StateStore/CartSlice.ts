@@ -19,21 +19,24 @@ export const cartSlice = createSlice({
     // `createSlice` will infer the state type from the `initialState` argument
     initialState,
     reducers: {
-        AddItem: (state, action : PayloadAction<CartItem>) => {
+        AddItem: (state, action : PayloadAction<Product>) => {
             let check : boolean = false
             if (state.items.length == 0) {
-                state.items.push(action.payload)
+                let newcartitem : CartItem = {product: action.payload, quantity: 1}
+                state.items.push(newcartitem)
             }
             else {
                 for (let i = 0; i < state.items.length; i++) {
                     let cartitem = state.items[i]
-                    if (cartitem.product.id == action.payload.product.id) {
+                    if (cartitem.product.id == action.payload.id) {
                         cartitem.quantity += 1
                         check = true
                     }
+                    if (check) break
                 }
                 if (!check) {
-                    state.items.push(action.payload)
+                    let newcartitem : CartItem = {product: action.payload, quantity: 1}
+                    state.items.push(newcartitem)
                 }
             }
         },

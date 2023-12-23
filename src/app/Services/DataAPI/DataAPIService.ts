@@ -45,6 +45,7 @@ export async function SearchProduct(searchname : string) {
 export async function AddProduct(newproduct : Product) {
     try {
         await axios.post(`${apiurl}/Warehouse/AddProduct`, newproduct)
+        return true
     } catch (err) {
         console.log(err)
     }
