@@ -12,7 +12,10 @@ export default async function Page( {params} : {params : {Category: string}}) {
 
     async function GetSubCategories() {
         try {
-            subcategories = await backendservice.GetCategories(params.Category)
+            let subcategoriesresponse = await backendservice.GetCategories(params.Category)
+            if (subcategoriesresponse != undefined) {
+                subcategories = subcategoriesresponse
+            }
         }
         catch (err) {
             console.log("failed to get subcategories")

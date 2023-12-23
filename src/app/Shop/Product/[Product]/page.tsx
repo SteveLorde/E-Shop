@@ -7,19 +7,28 @@ import Addbutton from './AddToCartButton'
 
 export default async function Product({params} : {params: {Product : string}}) {
 
-    let product : Product = await backendservice.GetProduct(params.Product)
-    let image : any = product.images[0]
+    let product = {} as Product
+    let image : any
 
-    const testbutton = console.log("LOL")
-
-
-    async function AddToCart() {
-        alert("ADD TO CART TRIGGERED")
+    async function GetProduct() {
+        let productresponse= await backendservice.GetProduct(params.Product)
+        if (productresponse != undefined) {
+            product = productresponse
+        }
     }
 
     async function ChangeImage(image : string) {
 
     }
+
+    async function OnInitMainImage() {
+        if (product != undefined) {
+            image = product.images[0]
+        }
+    }
+
+    GetProduct()
+    OnInitMainImage()
 
     return <>
         <div className={styling.productpagecanvas}>
@@ -38,8 +47,6 @@ export default async function Product({params} : {params: {Product : string}}) {
                 <h1 className={styling.producttitle}>PRODUCT NAME: {product?.name}</h1>
                 <p>{product?.description}</p>
             </div>
-
-
 
             {/* Buy */}
             <div className={styling.buysection}>
