@@ -7,15 +7,13 @@ import {Category, ParentCategory} from "@/app/Data/Models/Category";
 
 
 export interface NewProductRequest {
-    id? : string
-    name? : string
-    category? : string
-    description? : string
-    price? : number
+    name : string
+    category : string
+    description : string
+    price : number
     images? : string[]
-    quantityavailable? : number
+    quantityavailable : number
     imagefiles?: File[]
-
 }
 
 export default function AddProductForm() {

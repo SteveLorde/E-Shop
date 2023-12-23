@@ -1,4 +1,4 @@
-import { FormRequest } from "@/app/Auth/Models/AuthRequest"
+import { AuthRequest } from "@/app/Auth/Models/AuthRequest"
 import { User } from "@/app/Data/Models/User"
 import * as backendservice from "@/app/Services/DataAPI/DataAPIService"
 import axios from "axios";
@@ -9,7 +9,7 @@ interface formrequest {
     password: string
 }
 
-export async function Login(loginrequest : FormRequest){
+export async function Login(loginrequest : AuthRequest){
     try {
         let response = await axios.post(`${backendservice.apiurl}/Authentication/Login`, loginrequest)
         let responsetoken = response.data
@@ -44,7 +44,9 @@ export async function Register(registerrequest : formrequest){
 
 export async function GetUserInfo(){
     try {
-        let userinfo : User = await axios.post(`${backendservice.apiurl}/Authentication/GetUserInfo`, localStorage.getItem("usertoken"))
+        let usertoken = localStorage.getItem("usertoken")
+        let response = await axios.post(`${backendservice.apiurl}/Authentication/GetUserInfo`, usertoken )
+        let userinfo : User = response.data
         return userinfo
     }
     catch (err) {

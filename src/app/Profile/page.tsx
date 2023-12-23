@@ -3,17 +3,20 @@
 import {User} from "@/app/Data/Models/User";
 import * as authservice from '@/app/Services/Authentication/AuthService'
 import {useEffect, useState} from "react";
-import AddProductForm from "@/app/Profile/Components/AddProductForm/AddProductForm";
 import AdminPanel from "@/app/Profile/Components/AdminPanel/AdminPanel";
 import UserPanel from "@/app/Profile/Components/UserPanel/UserPanel";
 
 export default function Profile() {
 
-    const [user, setUser] = useState<User>()
+    const [user, setUser] = useState<User>({email: "", id: "", name: "", password: "", phonenumber: 0, username: "", usertype: "user"})
 
     async function GetUserInfo() {
-        let usertoset = await authservice.GetUserInfo()
-        setUser(usertoset)
+        if (localStorage.getItem("usertoken") != null || "") {
+            let usertoset = await authservice.GetUserInfo()
+            if (usertoset != undefined) {
+                setUser(usertoset)
+            }
+        }
     }
 
     useEffect(() => {
