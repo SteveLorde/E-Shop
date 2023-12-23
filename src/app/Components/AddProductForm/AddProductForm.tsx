@@ -1,7 +1,7 @@
 import {useFieldArray, useForm} from "react-hook-form";
 import * as backendservice from '../../Services/DataAPI/DataAPIService'
 import {useState} from "react";
-import {Category} from "@/app/Data/Models/Category";
+import {Category, ParentCategory} from "@/app/Data/Models/Category";
 
 
 export interface NewProductRequest {
@@ -22,7 +22,7 @@ export default function AddProductForm() {
     const {register: newproductform, handleSubmit: newproductsubmit } = useForm<NewProductRequest>()
 
     async function GetCategories() {
-        let categories : Category[] | any = await backendservice.GetCategories()
+        let categories : Category[] | any = await backendservice.GetParentCategories()
         setCategories(categories)
     }
 
@@ -43,9 +43,14 @@ export default function AddProductForm() {
             <input type="file" {...newproductform('images')} multiple/>
             <h2>product category</h2>
             <select {...newproductform('category')}>
-                {categories?.map( (category: Category, index) =>
-                        <option key={index} value={category.id} >{category.parentcategory.name} - {category.name}</option>
+                {categories?.map( (category: ParentCategory, index) =>
+                <div key={index}>
+                    <p >{category.name}</p>
+                    {category.categories?.map( (subcategory: Category) =>
+                        <option key={subcategory.id}>{subcategory.name}</option>
                     )}
+                </div>
+                )}
             </select>
             <h2>Product Barcode</h2>
             <input type="text"  />

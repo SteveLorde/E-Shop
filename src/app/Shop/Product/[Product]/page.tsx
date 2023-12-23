@@ -1,15 +1,20 @@
 'use server'
 import {Product} from "@/app/Data/Models/Product"
 import * as backendservice from '@/app/Services/DataAPI/DataAPIService'
+import styling from './styling.module.css'
+import Addbutton, {AddToCart} from './AddToCartButton'
 
 
 export default async function Product({params}) {
 
-    let product : Product | any = await backendservice.GetProduct(params.Product)
-    let image : string = " "
+    let product : Product = await backendservice.GetProduct(params.Product)
+    let image : any = product.images[0]
 
-    async function AddToCart(product: Product | undefined) {
+    const testbutton = console.log("LOL")
 
+
+    async function AddToCart() {
+        alert("ADD TO CART TRIGGERED")
     }
 
     async function ChangeImage(image : string) {
@@ -17,25 +22,31 @@ export default async function Product({params}) {
     }
 
     return <>
-        <div>
+        <div className={styling.productpagecanvas}>
             {/* IMAGE*/}
-            <div>
-                <img src={process.env.API_URL + `/storage/Products/${product?.id}/Images/${image}`} />
+            <div className={styling.productgallery} >
+                <img className={styling.mainimage} src={`${backendservice.apiurl}/storage/Products/${product?.id}/Images/${image}`} />
                 <div>
                     {product?.images?.map( (image : string) =>
-                        <img onClick={ () => ChangeImage(image) } key={image} src={process.env.NEXT_PUBLIC_API_URL + `/storage/Products/${product?.id}/Images/${image}`} />
+                        <img className={styling.productimages} key={image} src={`${backendservice.apiurl}/storage/Products/${product?.id}/Images/${image}`} />
                     )}
                 </div>
             </div>
+
             {/* Details*/}
-            <div>
-                <h1>PRODUCT NAME: {product?.name}</h1>
+            <div className={styling.productdetails}>
+                <h1 className={styling.producttitle}>PRODUCT NAME: {product?.name}</h1>
                 <p>{product?.description}</p>
             </div>
+
+
+
             {/* Buy */}
-            <div>
-                <button >Add to Cart</button>
-                <p>Available Quantity: {product?.quantityavailable}</p>
+            <div className={styling.buysection}>
+                {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
+                <p>{product.price} egp</p>
+                <Addbutton productid={product.id} />
+                <button className={styling.addtocart}></button>
             </div>
         </div>
     </>

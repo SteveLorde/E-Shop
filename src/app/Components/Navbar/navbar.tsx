@@ -1,6 +1,6 @@
 'use client'
 
-import styling from "@/app/Components/Navbar/styling.module.css"
+import styling from "@/app/Components/Navbar/navbarstyling.module.css"
 import Link from "next/link"
 import * as authservice from '@/app/Services/Authentication/AuthService'
 

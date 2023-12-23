@@ -74,9 +74,9 @@ export async function GetCategories(parentcategoryid: string) {
     }
 }
 
-export async function GetProductsOfCategory(categoryid : string) {
+export async function GetCategoryProducts(categoryid : string) {
     try {
-        let response = await axios.get(`${apiurl}/Warehouse/GetProductsOfParentCategory/${categoryid}`)
+        let response = await axios.get(`${apiurl}/Warehouse/GetCategoryProducts/${categoryid}`)
         let categoryproducts = response.data
         return categoryproducts
     }
@@ -112,7 +112,7 @@ export async function GetNews() {
 
 export async function SendMail(newmail : Mail) {
     try {
-        let response = await axios.post(process.env.NEXT_PUBLIC_API_URL + '/Mail/SendMail', newmail)
+        let response = await axios.post(`${apiurl}/Mail/SendMail`, newmail)
         let check : Boolean = response.data
         return check
     } catch (err) {

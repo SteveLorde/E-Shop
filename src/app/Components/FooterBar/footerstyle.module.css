@@ -1,0 +1,13 @@
+.footermain {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.footerrights {
+    color: rgba(128, 128, 128, 0.5);
+    font-weight: 400;
+}

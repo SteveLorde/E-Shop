@@ -1,27 +1,17 @@
-'use client'
+'use server'
+
+import styling from './footerstyle.module.css'
 
 
 import Link from "next/link";
 
-export default function FooterBar() {
+export default async function FooterBar() {
 
 
 
     return <>
-        <div>
-            <img />
-            <div>
-                <li>E-Shop is a LLC shopping company</li>
-                <li></li>
-            </div>
-        </div>
-
-        <div>
-            
-            <div>
-                <h2>Email Us</h2>
-                <Link href={'/email'}></Link>
-            </div>
+        <div className={styling.footermain}>
+            <p className={styling.footerrights}>all rights reserved to E-Shop operators</p>
         </div>
     </>
 }

@@ -1,14 +1,16 @@
 .navbar {
     display : flex;
+    flex-wrap: wrap;
     flex-direction: row;
     background-color: white;
     padding: 10px;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: max(50px);
+    padding-right: max(50px);
     justify-content: space-between;
     align-items: center;
     align-content: center;
     justify-items: center;
+    margin-bottom: 25px;
 }
 
 .links {
@@ -99,5 +101,13 @@
 }
 
 .authbutton {
+
+}
+
+@media (max-width: 900px) {
+    .navbar {
+
+        justify-content: center;
+    }
 
 }

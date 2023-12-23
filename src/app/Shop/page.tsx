@@ -28,11 +28,12 @@ export default async function Shop() {
 
             <div className={styling.allproductsgrid}>
                 {allproducts?.map( (product : Product) =>
-                    <Link href={`Shop/Product/${product.id}`} className={styling.productgriditem} key={product.name}>
+                    <Link href={`Shop/Product/${product.id}`} className={styling.productcard} key={product.name}>
                         <img className={styling.productimage} src={`${backendservice.apiurl}/storage/Products/${product.id}/Images/${product.images[0]}`} />
                         <h2>{product.name}</h2>
+                        {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
                         <div>
-                            <p>{product.price}</p>
+                            <p className={styling.productprice}>{product.price} egp</p>
                         </div>
                     </Link>
                 )}

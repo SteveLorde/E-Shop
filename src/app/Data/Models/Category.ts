@@ -7,6 +7,6 @@ export interface ParentCategory {
 export interface Category{
     id : string
     name : string
-    parentcategory : ParentCategory
-    parentcategoryname: string
+    parentCategoryId : string
+    parentCategory : ParentCategory
 }

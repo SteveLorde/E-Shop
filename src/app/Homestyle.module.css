@@ -11,7 +11,7 @@
 }
 
 .carousel {
-
+    width: max(800px);
 }
 
 .carouselitem {
@@ -22,7 +22,7 @@
 }
 
 .innercarouselitem{
-    height: 600px;
+    height: 500px;
     display: flex;
 }
 

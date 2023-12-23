@@ -16,12 +16,29 @@ h1,h2,h3,p {
   flex-direction: column;
 }
 
-.categorysidebar {
-  padding-left: 10px;
-  padding-right: 55px;
+Link, link {
+  text-decoration: none;
 }
+
+.categorysidebar {
+  padding-left: 25px;
+  padding-right: 70px;
+}
+
+.categorylink {
+  text-decoration: none;
+}
+
 .categories {
   display: flex;
   flex-direction: column;
+  padding-top: 25px;
   gap: 10px;
 }
+
+.productstocked {
+  margin-top: 10px;
+  color: green;
+  font-weight: 500;
+}
+
