@@ -5,7 +5,7 @@ import styling from './styling.module.css'
 import Addbutton from './AddToCartButton'
 
 
-export default async function Product({params}) {
+export default async function Product({params} : {params: {Product : string}}) {
 
     let product : Product = await backendservice.GetProduct(params.Product)
     let image : any = product.images[0]
