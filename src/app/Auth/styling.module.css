@@ -1,0 +1,44 @@
+.authcanvas {
+    display: flex;
+    flex-direction: column;
+}
+
+.formcanvas {
+    flex: 1;
+    margin: 50px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 70px;
+}
+
+.formtitle {
+    margin-top: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px
+}
+
+.switchformbutton {
+    text-decoration: none;
+    border: 0px solid;
+    background-color: dodgerblue;
+    color: white;
+    padding: 13px;
+    border-radius: 50px;
+}
+
+.submitbutton {
+    margin-top: 15px;
+    text-decoration: none;
+    border: 0px solid;
+    background-color: dodgerblue;
+    color: white;
+    padding: 10px 60px 10px 60px;
+    border-radius: 50px;
+}

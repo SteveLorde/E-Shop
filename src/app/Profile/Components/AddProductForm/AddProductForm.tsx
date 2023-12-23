@@ -1,5 +1,7 @@
+'use client'
+
 import {useFieldArray, useForm} from "react-hook-form";
-import * as backendservice from '../../Services/DataAPI/DataAPIService'
+import * as backendservice from '../../../Services/DataAPI/DataAPIService'
 import {useState} from "react";
 import {Category, ParentCategory} from "@/app/Data/Models/Category";
 
@@ -15,7 +17,6 @@ export interface NewProductRequest {
     imagefiles?: File[]
 
 }
-
 
 export default function AddProductForm() {
     const [categories, setCategories] = useState([])

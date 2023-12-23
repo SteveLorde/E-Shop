@@ -1,15 +1,29 @@
-'use server'
+'use client'
 
 import {User} from "@/app/Data/Models/User";
 import * as authservice from '@/app/Services/Authentication/AuthService'
+import {useEffect, useState} from "react";
+import AddProductForm from "@/app/Profile/Components/AddProductForm/AddProductForm";
+import AdminPanel from "@/app/Profile/Components/AdminPanel/AdminPanel";
+import UserPanel from "@/app/Profile/Components/UserPanel/UserPanel";
 
-export default async function Profile() {
+export default function Profile() {
 
-    let user : User = await authservice.GetUserInfo()
+    const [user, setUser] = useState<User>()
+
+    async function GetUserInfo() {
+        let usertoset = await authservice.GetUserInfo()
+        setUser(usertoset)
+    }
+
+    useEffect(() => {
+        GetUserInfo()
+    }, []);
 
     return <>
 
         <div>
+            {/* USER INFO */}
             <h2>Personal Info</h2>
             <div>
                 <p>Username: {user.username}</p>
@@ -22,14 +36,14 @@ export default async function Profile() {
                 <p>Email: {user.email}</p>
             </div>
 
-            <div>
-                {/* user purchases log TO BE MADE LATER */}
-                <h2>Purchases Log</h2>
-                <div>
-
-                </div>
+            {user?.usertype == "admin" && <div>
+                <AdminPanel />
             </div>
+            }
 
+            {user?.usertype == "user" && <div>
+                <UserPanel />
+            </div>}
 
         </div>
 

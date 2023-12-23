@@ -1,15 +1,18 @@
 'use client'
 import * as authservice from '@/app/Services/Authentication/AuthService'
-import { FormRequest } from './Models/FormRequest';
+import {AuthRequest} from './Models/AuthRequest';
 import {useState} from "react";
+import styling from './styling.module.css'
+import {useRouter} from "next/navigation";
+import {useForm} from "react-hook-form";
 
 
 export default function Page() {
 
     const [isregisterformhidden, setRegisterVisible] = useState<boolean>(true);
     const [isloginformhidden, setLoginVisible] = useState<boolean>(false);
-
-    let formrequest : FormRequest
+    const navigate = useRouter()
+    const {register: loginform, handleSubmit: loginsubmit } = useForm<AuthRequest>()
 
     async function ToggleForm() {
         if (isregisterformhidden == true) {
@@ -22,53 +25,49 @@ export default function Page() {
         }
     }
 
-    async function Login(FormData : FormData) {
-        formrequest.username = FormData.get('username') as string
-        formrequest.password = FormData.get('password') as string
-        console.log("checking form login request" + formrequest)
-        let check = await authservice.Login(formrequest)
+    async function Login(loginrequest : AuthRequest) {
+        let check = await authservice.LoginTest(loginrequest)
         if (check) {
-
+            navigate.push('/Profile')
         }
     }
 
-    async function Register(FormData : FormData) {
-        formrequest.username = FormData.get('username') as string
-        formrequest.password = FormData.get('password') as string
-        console.log("checking form register request" + formrequest)
-        let check = await authservice.Register(formrequest)
-        if (check) {
-            let checklogin = await authservice.Login(formrequest)
-            if (checklogin) { }
+
+    async function Register(registerrequest : AuthRequest) {
+        try {
+            let check = await authservice.Register(registerrequest)
+            navigate.push('/Profile')
         }
-        else {
+        catch (err) {
             console.log("error register")
         }
     }
 
     return <>
-            <div hidden={isloginformhidden} id='loginform' className="loginform">
-                <button onClick={ () => ToggleForm()}>Not Registered? click here</button>
-                <h2>Login</h2>
-                <form className={'form'}  action={Login}>
+        <div className={styling.authcanvas}>
+            <div className={styling.formcanvas} hidden={isloginformhidden} id='loginform' >
+                <button className={styling.switchformbutton} onClick={ () => ToggleForm()}>Not Registered? click here</button>
+                <h2 className={styling.formtitle}>Login</h2>
+                <form className={styling.form}  onSubmit={loginsubmit(Login)}>
                     <h3 className={'inputtitle'}>Username</h3>
-                    <input type="text" name='username'/>
+                    <input type="text"  {...loginform('username')} />
                     <h3 className={'inputtitle'}>Password</h3>
-                    <input type="text" name='password'/>
-                    <button type="submit">Login</button>
+                    <input type="text" {...loginform('password')} />
+                    <input className={styling.submitbutton} type="submit" value="Login"></input>
                 </form>
             </div> 
 
-            <div hidden={isregisterformhidden} id='registerform' className="registerform">
-                <button onClick={ () => ToggleForm()} >Already Registered? Login</button>
-                <h2>Register Account</h2>
-                <form className={'form'} action={Register}  >
+            <div className={styling.formcanvas} hidden={isregisterformhidden} id='registerform'>
+                <button className={styling.switchformbutton} onClick={ () => ToggleForm()} >Already Registered? Login</button>
+                <h2 className={styling.formtitle}>Register Account</h2>
+                <form className={styling.form} onSubmit={() => Register}>
                     <h3 className={'inputtitle'}>Username</h3>
                     <input type="text" />
                     <h3 className={'inputtitle'}>Password</h3>
                     <input type="text" />
-                    <button type="submit">Register</button>
+                    <input className={styling.submitbutton} type="submit" value="Register"></input>
                 </form>
             </div>
+        </div>
     </>
 }

@@ -3,7 +3,7 @@ import {element} from "prop-types";
 import {News} from "@/app/Data/Models/News";
 import axios from "axios";
 import {Category, ParentCategory} from "@/app/Data/Models/Category";
-import {NewProductRequest} from "@/app/Components/AddProductForm/AddProductForm";
+import {NewProductRequest} from "@/app/Profile/Components/AddProductForm/AddProductForm";
 import {Mail} from "@/app/Data/Models/Mail";
 import {Bool} from "reselect/es/types";
 

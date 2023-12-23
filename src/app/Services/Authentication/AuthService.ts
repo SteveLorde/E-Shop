@@ -1,4 +1,4 @@
-import { FormRequest } from "@/app/Auth/Models/FormRequest"
+import { FormRequest } from "@/app/Auth/Models/AuthRequest"
 import { User } from "@/app/Data/Models/User"
 import * as backendservice from "@/app/Services/DataAPI/DataAPIService"
 import axios from "axios";
@@ -17,6 +17,18 @@ export async function Login(loginrequest : FormRequest){
     }
     catch (err) {
         console.log("error login")
+    }
+}
+
+export async function LoginTest(loginrequest : any){
+    try {
+        let response = await axios.post(`${backendservice.apiurl}/Authentication/LoginTest`, loginrequest)
+        let responsetoken = response.data
+        localStorage.setItem("usertoken", responsetoken)
+        return true
+    }
+    catch (err) {
+        console.log("error login test")
     }
 }
 
