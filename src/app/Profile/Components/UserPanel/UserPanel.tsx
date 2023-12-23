@@ -4,11 +4,9 @@
 import {useState} from "react";
 import {PurchaseLog} from "@/app/Data/Models/PurchaseLog";
 
-export default function UserPanel() {
+export default function UserPanel( {props} : { props : {userid : string } } ) {
 
     const [purchaselogs, setPurchaseLogs] = useState<PurchaseLog[]>([])
-
-
 
     return <>
 

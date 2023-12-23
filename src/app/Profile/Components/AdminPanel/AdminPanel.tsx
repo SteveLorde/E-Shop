@@ -7,7 +7,7 @@ import {useForm} from "react-hook-form";
 import AddProductForm from "@/app/Profile/Components/AddProductForm/AddProductForm";
 
 
-export default function AdminPanel() {
+export default function AdminPanel( {params} : { params: {adminid : string} }  ) {
     const [products, setProducts] = useState<Product[]>([]);
 
 

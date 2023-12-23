@@ -37,12 +37,12 @@ export default function Profile() {
             </div>
 
             {user?.usertype == "admin" && <div>
-                <AdminPanel />
+                <AdminPanel params={ {adminid: user.id} } />
             </div>
             }
 
             {user?.usertype == "user" && <div>
-                <UserPanel />
+                <UserPanel props={ {userid: user.id}} />
             </div>}
 
         </div>
