@@ -1,12 +1,12 @@
 'use client'
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "@/app/Services/StateStore/Store";
-import {CartItem} from "@/app/Data/Models/CartItem";
+import {RootState} from "@/Services/StateStore/Store";
+import {CartItem} from "@/Data/Models/CartItem";
 import Link from "next/link";
 import {useEffect, useState} from "react";
-import CartSlice, {AddItem, clearCart, RemoveItem} from "@/app/Services/StateStore/CartSlice";
+import CartSlice, {AddItem, clearCart, RemoveItem} from "@/Services/StateStore/CartSlice";
 import styling from "./styling.module.css"
-import {apiurl} from "@/app/Services/DataAPI/DataAPIService"
+import {apiurl} from "@/Services/DataAPI/DataAPIService"
 
 export default function CartPage() {
     const [cartitems, setCartItems] = useState<CartItem[]>([])

@@ -1,10 +1,10 @@
 'use client'
 
-import {User} from "@/app/Data/Models/User";
-import * as authservice from '@/app/Services/Authentication/AuthService'
+import {User} from "@/Data/Models/User";
+import * as authservice from '@/Services/Authentication/AuthService'
 import {useEffect, useState} from "react";
-import AdminPanel from "@/app/Profile/Components/AdminPanel/AdminPanel";
-import UserPanel from "@/app/Profile/Components/UserPanel/UserPanel";
+import AdminPanel from "@/Components/AdminPanel/AdminPanel";
+import UserPanel from "@/Components/UserPanel/UserPanel";
 
 export default function Profile() {
 

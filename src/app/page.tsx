@@ -1,8 +1,8 @@
 'use client'
-import {Product} from './Data/Models/Product'
+import {Product} from '@/Data/Models/Product'
 import style from '@/app/Homestyle.module.css'
-import * as backendservice from '@/app/Services/DataAPI/DataAPIService'
-import {News} from "@/app/Data/Models/News";
+import * as backendservice from '@/Services/DataAPI/DataAPIService'
+import {News} from "@/Data/Models/News";
 import {useEffect, useState} from "react";
 import { Carousel } from "react-bootstrap";
 import Link from "next/link";

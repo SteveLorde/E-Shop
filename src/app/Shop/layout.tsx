@@ -1,5 +1,5 @@
 
-import CategoriesSideBar from "@/app/Components/CategoriesSideBar/CategoriesSideBar";
+import CategoriesSideBar from "@/Components/CategoriesSideBar/CategoriesSideBar";
 import styles from  "./styles.module.css"
 import {Metadata} from "next";
 

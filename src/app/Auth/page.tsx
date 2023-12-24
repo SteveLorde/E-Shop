@@ -1,6 +1,6 @@
 'use client'
-import * as authservice from '@/app/Services/Authentication/AuthService'
-import {AuthRequest} from './Models/AuthRequest';
+import * as authservice from '@/Services/Authentication/AuthService'
+import {AuthRequest} from '../../Data/Models/AuthRequest';
 import {useState} from "react";
 import styling from './styling.module.css'
 import {useRouter} from "next/navigation";

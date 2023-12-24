@@ -2,9 +2,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { Navbar } from './Components/Navbar/navbar'
-import FooterBar from "@/app/Components/FooterBar/FooterBar";
-import {StoreProvider} from "@/app/Services/StateStore/StoreProvider";
+import { Navbar } from '@/Components/Navbar/navbar'
+import FooterBar from "@/Components/FooterBar/FooterBar";
+import {StoreProvider} from "@/Services/StateStore/StoreProvider";
 import React from "react";
 
 const inter = Inter({ subsets: ['latin'] })

@@ -1,8 +1,8 @@
 'use server'
 import Link from "next/link";
-import * as backendservice from '@/app/Services/DataAPI/DataAPIService'
-import {Product} from "@/app/Data/Models/Product";
-import {Category, ParentCategory} from "@/app/Data/Models/Category";
+import * as backendservice from '@/Services/DataAPI/DataAPIService'
+import {Product} from "@/Data/Models/Product";
+import {Category, ParentCategory} from "@/Data/Models/Category";
 import styling from "@/app/Shop/styles.module.css"
 //import {useEffect, useState} from "react";
 
