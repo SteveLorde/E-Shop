@@ -1,4 +1,5 @@
 'use server'
+
 import {Product} from "@/Data/Models/Product"
 import * as backendservice from '@/Services/DataAPI/DataAPIService'
 import styling from './styling.module.css'
@@ -7,34 +8,24 @@ import Addbutton from './AddToCartButton'
 
 export default async function Product({params} : {params: {productid : string}}) {
 
-    let product = {} as Product
-    let image : any
-
-    async function GetProduct() {
-        let productresponse= await backendservice.GetProduct(params.productid)
-        if (productresponse != undefined) {
-            product = productresponse
-        }
-    }
+    let product = await backendservice.GetProduct(params.productid)
+    let mainimage : any = product?.images[0]
 
     async function ChangeImage(image : string) {
 
     }
 
     async function OnInitMainImage() {
-        if (product != undefined) {
-            image = product.images[0]
-        }
+
     }
 
-    GetProduct()
     OnInitMainImage()
 
     return <>
         <div className={styling.productpagecanvas}>
             {/* IMAGE*/}
             <div className={styling.productgallery} >
-                <img className={styling.mainimage} src={`${backendservice.apiurl}/storage/Products/${product?.id}/Images/${image}`} />
+                <img className={styling.mainimage} src={`${backendservice.apiurl}/storage/Products/${product?.id}/Images/${mainimage}`} />
                 <div>
                     {product?.images?.map( (image : string) =>
                         <img className={styling.productimages} key={image} src={`${backendservice.apiurl}/storage/Products/${product?.id}/Images/${image}`} />
@@ -44,8 +35,8 @@ export default async function Product({params} : {params: {productid : string}})
 
             {/* Details*/}
             <div className={styling.productdetails}>
-                <h1 className={styling.producttitle}>PRODUCT NAME: {product?.name}</h1>
-                <p>{product?.description}</p>
+                <h1 className={styling.producttitle}>PRODUCT NAME: {product.name}</h1>
+                <p>{product.description}</p>
             </div>
 
             {/* Buy */}
@@ -53,8 +44,8 @@ export default async function Product({params} : {params: {productid : string}})
                 {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
                 <p>{product.price} egp</p>
                 <Addbutton params={ {product: product}} />
-                <button className={styling.addtocart}></button>
             </div>
         </div>
     </>
+
 }

@@ -13,6 +13,6 @@ export default function Addbutton( {params} : { params: {product : Product} }) {
     }
 
     return <>
-    <button onClick={ () => additem() }>Add To Cart</button>
+    <button onClick={ () => additem() }>Add To Cart {params.product.name}</button>
     </>
 }
