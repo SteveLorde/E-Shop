@@ -1,11 +1,17 @@
 import {Product} from "@/Data/Models/Product";
 import {element} from "prop-types";
-import {News} from "@/Data/Models/News";
+import {Event} from "@/Data/Models/Event";
 import axios from "axios";
 import {Category, ParentCategory} from "@/Data/Models/Category";
-import {NewProductRequest} from "@/Components/AddProductForm/AddProductForm";
 import {Mail} from "@/Data/Models/Mail";
 import {Bool} from "reselect/es/types";
+
+export async function GetEventProducts(discounteventid: string) {
+    let response = await axios.get(`${apiurl}/eshop/warehouse/geteventproducts/${discounteventid}`)
+    let products : Product[] = response.data
+    return products
+}
+
 
 export const apiurl = process.env.NEXT_PUBLIC_API_URL
 
@@ -97,7 +103,7 @@ export async function GetMostSelling() {
 export async function GetNews() {
     try {
         let response = await axios.get(`${apiurl}/eshop/news/getnews`)
-        let news: News[] = response.data
+        let news: Event[] = response.data
         return news
     } catch (err) {
         console.log(err)

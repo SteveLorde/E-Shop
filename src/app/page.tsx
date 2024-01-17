@@ -2,7 +2,7 @@
 import {Product} from '@/Data/Models/Product'
 import style from '@/app/Homestyle.module.css'
 import * as backendservice from '@/Services/DataAPI/DataAPIService'
-import {News} from "@/Data/Models/News";
+import {Event} from "@/Data/Models/Event";
 import {useEffect, useState} from "react";
 import { Carousel } from "react-bootstrap";
 import Link from "next/link";
@@ -13,7 +13,7 @@ export default function Home() {
 
         return <>
             <div className={style.homelayout}>
-                {/* News Canvas */}
+                {/* Event Canvas */}
                 <NewsCarousel />
 
                 {/* Most Selling past 24 hours */}

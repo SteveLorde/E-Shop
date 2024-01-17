@@ -3,13 +3,13 @@ import {useEffect, useState} from "react";
 import styles from '@/Components/NewsCarousel/style.module.css'
 import style from "@/Components/NewsCarousel/style.module.css";
 import {Carousel} from "react-bootstrap";
-import {News} from "@/Data/Models/News";
+import {Event} from "@/Data/Models/Event";
 import Link from "next/link";
 import * as backendservice from "@/Services/DataAPI/DataAPIService";
 
 
 export function NewsCarousel() {
-    const [newstoshow, setNews] = useState<News[]>([])
+    const [newstoshow, setNews] = useState<Event[]>([])
     const [slideindex, setSlideIndex] = useState(0)
 
     function handleSlideSelect(selectedSlideIndex: any) {
@@ -17,7 +17,7 @@ export function NewsCarousel() {
     }
 
     async function GetNews() {
-        let news : News[] | any = await backendservice.GetNews()
+        let news : Event[] | any = await backendservice.GetNews()
         setNews(news)
     }
     useEffect(() => {
@@ -27,14 +27,14 @@ export function NewsCarousel() {
     return <>
         <div className={style.carouselcanvas}>
             <Carousel className={style.carousel} activeIndex={slideindex} onSelect={handleSlideSelect}>
-                {newstoshow?.map((news: News, index) =>
+                {newstoshow?.map((event: Event, index) =>
                     <Carousel.Item className={style.carouselitem} key={index}>
-                        <Link href={`/Shop/${news.eventid}`} className={style.innercarouselitem}>
+                        <Link href={`/Shop/${event.id}`} className={style.innercarouselitem}>
                             <img className={style.newsimage}
-                                 src={`${backendservice.apiurl}/storage/EShopApp/News/${news.id}/Images/${news.image}`}/>
+                                 src={`${backendservice.apiurl}/storage/EShopApp/News/${event.id}/Images/${event.image}`}/>
                             <div className={style.newstitles}>
-                                <h1>{news.title}</h1>
-                                <h3>{news.subtitle}</h3>
+                                <h1>{event.title}</h1>
+                                <h3>{event.subtitle}</h3>
                             </div>
                         </Link>
                     </Carousel.Item>

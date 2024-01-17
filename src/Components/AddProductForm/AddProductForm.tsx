@@ -6,21 +6,9 @@ import {useState} from "react";
 import {Category, ParentCategory} from "@/Data/Models/Category";
 import {Product} from "@/Data/Models/Product";
 
-
-export interface NewProductRequest {
-    name : string
-    category : Category
-    description : string
-    price : number
-    images : string[]
-    barcode : string
-    quantityavailable : number
-    imagefiles?: File[]
-}
-
 export default function AddProductForm() {
     const [categories, setCategories] = useState<ParentCategory[]>([])
-    const {register: newproductform, handleSubmit: newproductsubmit } = useForm<NewProductRequest>()
+    const {register: newproductform, handleSubmit: newproductsubmit } = useForm<Product>()
     let imagefiles : any
     const [imagespreviews, setImagesPreviews] = useState([])
 
@@ -39,16 +27,16 @@ export default function AddProductForm() {
 
     }
 
-    async function SubmitNewProduct(newproductreq : NewProductRequest) {
-        let newproduct : Product = {} as Product
-        {
-            newproduct.name = newproductreq.name
-            newproduct.description = newproductreq.description
-            newproduct.price = newproductreq.price
-            newproduct.quantityavailable = newproductreq.quantityavailable
-            newproduct.category = newproductreq.category
-            newproduct.images = newproductreq.images
-            newproduct.bardcode = newproductreq.barcode
+    async function SubmitNewProduct(newproductreq : Product) {
+        let newproduct : Product = {
+            id: "",
+            sellnumber: 0,
+            name: newproductreq.name,
+            description: newproductreq.description,
+            price: newproductreq.price,
+            quantityavailable: newproductreq.quantityavailable,
+            category: newproductreq.category,
+            images: newproductreq.images
         }
         let check = await backendservice.AddProduct(newproduct)
         if (check) {
