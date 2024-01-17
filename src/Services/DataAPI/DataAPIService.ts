@@ -11,7 +11,7 @@ export const apiurl = process.env.NEXT_PUBLIC_API_URL
 
 export async function GetProducts() {
     try {
-        let response = await axios.get(`${apiurl}/Warehouse/GetAllProducts`)
+        let response = await axios.get(`${apiurl}/eshop/warehouse/getallproducts`)
         let products : Product[] = response.data
         return products
     }
@@ -21,19 +21,14 @@ export async function GetProducts() {
 }
 
 export async function GetProduct(productid : string) {
-    try {
-        let response = await axios.get(`${apiurl}/Warehouse/GetProduct/${productid}`)
+        let response = await axios.get(`${apiurl}/eshop/warehouse/getproduct/${productid}`)
         let product : Product = response.data
         return product
-    }
-    catch (err) {
-        console.log("error fetching product")
-    }
 }
 
 export async function SearchProduct(searchname : string) {
     try {
-        let response = await axios.get(`${apiurl}/Warehouse/SearchProduct/${searchname}`)
+        let response = await axios.get(`${apiurl}/eshop/warehouse/searchproduct/${searchname}`)
         let searchedproducts : Product[] = response.data
         return searchedproducts
     }
@@ -44,7 +39,7 @@ export async function SearchProduct(searchname : string) {
 
 export async function AddProduct(newproduct : Product) {
     try {
-        await axios.post(`${apiurl}/Warehouse/AddProduct`, newproduct)
+        await axios.post(`${apiurl}/e/shop/warehouse/addproduct`, newproduct)
         return true
     } catch (err) {
         console.log(err)
@@ -55,7 +50,7 @@ export async function AddProduct(newproduct : Product) {
 
 export async function GetParentCategories() {
     try {
-        let response = await axios.get(`${apiurl}/Warehouse/GetParentCategories`)
+        let response = await axios.get(`${apiurl}/eshop/warehouse/getparentcategories`)
         let parentcategories : ParentCategory[] = response.data
         return parentcategories
     }
@@ -66,7 +61,7 @@ export async function GetParentCategories() {
 
 export async function GetCategories(parentcategoryid: string) {
     try {
-        let response = await axios.get(`${apiurl}/Warehouse/GetCategories/${parentcategoryid}`)
+        let response = await axios.get(`${apiurl}/eshop/warehouse/getcategories/${parentcategoryid}`)
         let categories : Category[] = response.data
         return categories
     }
@@ -77,7 +72,7 @@ export async function GetCategories(parentcategoryid: string) {
 
 export async function GetCategoryProducts(categoryid : string) {
     try {
-        let response = await axios.get(`${apiurl}/Warehouse/GetCategoryProducts/${categoryid}`)
+        let response = await axios.get(`${apiurl}/eshop/warehouse/getcategoryproducts/${categoryid}`)
         let categoryproducts = response.data
         return categoryproducts
     }
@@ -90,7 +85,7 @@ export async function GetCategoryProducts(categoryid : string) {
 
 export async function GetMostSelling() {
     try {
-        let response = await axios.get(`${apiurl}/Warehouse/MostSelling`)
+        let response = await axios.get(`${apiurl}/eshop/warehouse/mostselling`)
         let mostselling : Product[] = response.data
         return mostselling
     }
@@ -101,7 +96,7 @@ export async function GetMostSelling() {
 
 export async function GetNews() {
     try {
-        let response = await axios.get(`${apiurl}/News/GetNews`)
+        let response = await axios.get(`${apiurl}/eshop/news/getnews`)
         let news: News[] = response.data
         return news
     } catch (err) {
@@ -113,7 +108,7 @@ export async function GetNews() {
 
 export async function SendMail(newmail : Mail) {
     try {
-        let response = await axios.post(`${apiurl}/Mail/SendMail`, newmail)
+        let response = await axios.post(`${apiurl}/mail/sendmail`, newmail)
         let check : Boolean = response.data
         return check
     } catch (err) {

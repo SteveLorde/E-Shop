@@ -36,13 +36,13 @@ export default async function Product({params} : {params: {productid : string}})
             {/* Details*/}
             <div className={styling.productdetails}>
                 <h1 className={styling.producttitle}>PRODUCT NAME: {product.name}</h1>
-                <p>{product.description}</p>
+                <p>{product?.description}</p>
             </div>
 
             {/* Buy */}
             <div className={styling.buysection}>
                 {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
-                <p>{product.price} egp</p>
+                <p>{product?.price} egp</p>
                 <Addbutton params={ {product: product}} />
             </div>
         </div>

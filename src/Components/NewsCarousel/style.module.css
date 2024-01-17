@@ -1,22 +1,38 @@
-.carousel {
-    width: 80%;
-    margin: auto;
+
+.carouselcanvas {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .slideContainer {
+    padding: 0px 200px 0px 200px;
+
+}
+
+.carousel {
+    width: max(800px);
+}
+
+.carouselitem {
+    background-color: purple;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.innercarouselitem{
+    height: 500px;
     display: flex;
-    overflow: hidden;
-    width: 100%;
-  }
-  
-  .slide {
-    min-width: 100%;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .activeSlide {
-    transform: translateX(-100%);
-  }
+}
+
+.newsimage {
+    flex: 1;
+    object-fit: fill;
+    z-index: 0;
+}
+
+.newstitles {
+    color: white;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+}
