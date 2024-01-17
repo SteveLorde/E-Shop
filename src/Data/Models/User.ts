@@ -4,6 +4,5 @@ export interface User {
     name : string
     phonenumber : number
     email : string
-    password : string
     usertype :  "user" | "admin"
 }
