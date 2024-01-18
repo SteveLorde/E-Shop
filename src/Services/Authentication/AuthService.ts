@@ -3,42 +3,36 @@ import { User } from "@/Data/Models/User"
 import * as backendservice from "@/Services/DataAPI/DataAPIService"
 import axios from "axios";
 
-export let isloggedin : boolean = false
-interface formrequest {
-    username: string
-    password: string
-}
-
 export async function Login(loginrequest : AuthRequest){
     try {
-        let response = await axios.post(`${backendservice.apiurl}/Authentication/Login`, loginrequest)
-        let responsetoken = response.data
-        localStorage.setItem("usertoken", responsetoken)
+        let response = await axios.post(`${backendservice.apiurl}/eshop/authentication/login`, loginrequest)
+        if (response.data != null || "") {
+            let responsetoken : string = response.data
+            localStorage.setItem("usertoken", responsetoken)
+            return true
+        }
+        else {
+            return false
+        }
     }
     catch (err) {
-        console.log("error login")
+        console.log("error login: " + err)
     }
 }
 
-export async function LoginTest(loginrequest : any){
+export async function Register(registerrequest : AuthRequest){
     try {
-        let response = await axios.post(`${backendservice.apiurl}/Authentication/LoginTest`, loginrequest)
-        let responsetoken = response.data
-        localStorage.setItem("usertoken", responsetoken)
-        return true
+        let response = await axios.post(`${backendservice.apiurl}/eshop/authentication/register`, registerrequest)
+        if (response.data != false || "" || null) {
+            localStorage.setItem('usertoken' , response.data)
+            return true
+        }
+        else {
+            return false
+        }
     }
     catch (err) {
-        console.log("error login test")
-    }
-}
-
-export async function Register(registerrequest : formrequest){
-    try {
-        let response = await axios.post(`${backendservice.apiurl}/Authentication/Register`, registerrequest)
-        return true
-    }
-    catch (err) {
-        console.log("error registering")
+        console.log("error registering: " + err)
     }
 }
 
@@ -56,5 +50,4 @@ export async function GetUserInfo(){
 
 export function Logout() {
     localStorage.removeItem("usertoken")
-    isloggedin = false
 }

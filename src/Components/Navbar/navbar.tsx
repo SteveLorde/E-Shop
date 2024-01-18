@@ -25,7 +25,7 @@ export function Navbar() {
         SetSearchInput(e.target.value)
     }
     function CheckAuthStatus() {
-        if (!authservice.isloggedin) {
+        if (!localStorage.getItem('usertoken')) {
             setAuthStatus('Login/Register')
         } else {
             setAuthStatus('Logout')
