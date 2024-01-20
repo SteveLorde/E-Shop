@@ -5,7 +5,7 @@ import axios from "axios";
 
 export async function AddToCart(productid : string) {
     try {
-        let response = await axios.get(`${backendservice.apiurl}/Shopping/AddToCart/${productid}`)
+        let response = await axios.get(`${backendservice.apiurl}/eshopapp/shopping/AddToCart/${productid}`)
         let check : Boolean = response.data
         return check
 

@@ -3,7 +3,7 @@
 import {Product} from "@/Data/Models/Product"
 import * as backendservice from '@/Services/DataAPI/DataAPIService'
 import styling from './styling.module.css'
-import Addbutton from './AddToCartButton'
+import AddToCartButton from '../../../../Components/AddToCartButton/AddToCartButton'
 
 
 export default async function Product({params} : {params: {productid : string}}) {
@@ -43,7 +43,7 @@ export default async function Product({params} : {params: {productid : string}})
             <div className={styling.buysection}>
                 {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
                 <p>{product?.price} egp</p>
-                <Addbutton params={ {product: product}} />
+                <AddToCartButton params={ {product: product}} />
             </div>
         </div>
     </>
