@@ -29,6 +29,7 @@ export default function AddProductForm() {
 
     async function SubmitNewProduct(newproductreq : Product) {
         let newproduct : Product = {
+            discounts: [],
             id: "",
             sellnumber: 0,
             name: newproductreq.name,

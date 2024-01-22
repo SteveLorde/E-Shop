@@ -3,12 +3,12 @@
 import {User} from "@/Data/Models/User";
 import * as authservice from '@/Services/Authentication/AuthService'
 import {useEffect, useState} from "react";
-import AdminPanel from "@/Components/AdminPanel/AdminPanel";
-import UserPanel from "@/Components/UserPanel/UserPanel";
+import AdminPanel from "@/Components/ProfileComponents/AdminPanel/AdminPanel";
+import UserPanel from "@/Components/ProfileComponents/UserPanel/UserPanel";
 
 export default function Profile() {
 
-    const [user, setUser] = useState<User>({email: "", id: "", name: "", password: "", phonenumber: 0, username: "", usertype: "user"})
+    const [user, setUser] = useState<User>({email: "", id: "", name: "", phonenumber: 0, username: "", usertype: "user"})
 
     async function GetUserInfo() {
         if (localStorage.getItem("usertoken") != null || "") {
@@ -32,7 +32,7 @@ export default function Profile() {
                 <p>Username: {user.username}</p>
                 <p>Name: {user.name}</p>
                 <div>
-                    <p>Password: {user.password}</p>
+                    <p>Password: xxxxxx</p>
                     <button>Change Password</button>
                 </div>
                 <p>Phone Number: {user.phonenumber}</p>

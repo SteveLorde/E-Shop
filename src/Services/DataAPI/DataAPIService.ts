@@ -90,14 +90,10 @@ export async function GetCategoryProducts(categoryid : string) {
 //---------------------------------------------------------------------
 
 export async function GetMostSelling() {
-    try {
+
         let response = await axios.get(`${apiurl}/eshop/warehouse/mostselling`)
         let mostselling : Product[] = response.data
         return mostselling
-    }
-    catch (err) {
-        console.log(err)
-    }
 }
 
 export async function GetNews() {

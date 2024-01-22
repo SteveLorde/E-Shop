@@ -1,6 +1,6 @@
 'use client'
+
 import {useEffect, useState} from "react";
-import styles from '@/Components/NewsCarousel/style.module.css'
 import style from "@/Components/NewsCarousel/style.module.css";
 import {Carousel} from "react-bootstrap";
 import {Event} from "@/Data/Models/Event";

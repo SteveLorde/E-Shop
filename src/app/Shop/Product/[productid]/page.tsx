@@ -11,16 +11,6 @@ export default async function Product({params} : {params: {productid : string}})
     let product = await backendservice.GetProduct(params.productid)
     let mainimage : any = product?.images[0]
 
-    async function ChangeImage(image : string) {
-
-    }
-
-    async function OnInitMainImage() {
-
-    }
-
-    OnInitMainImage()
-
     return <>
         <div className={styling.productpagecanvas}>
             {/* IMAGE*/}
