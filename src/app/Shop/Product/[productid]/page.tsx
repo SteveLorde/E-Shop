@@ -12,7 +12,7 @@ export default async function Product({params} : {params: {productid : string}})
     let mainimage : any = product?.images[0]
 
     function CalculateDiscountedPrice() {
-        let discountedprice : number = 0
+        let discountedprice : number = product.price
         for (let i = 0; i < product.discounts.length; i++) {
             let discount = product.discounts[i]
             if (discount.ispercentage) {
