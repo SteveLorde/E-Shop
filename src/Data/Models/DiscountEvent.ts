@@ -1,4 +1,6 @@
-export interface Event {
+import {Product} from "@/Data/Models/Product";
+
+export interface DiscountEvent {
     id : string
     title : string
     subtitle : string

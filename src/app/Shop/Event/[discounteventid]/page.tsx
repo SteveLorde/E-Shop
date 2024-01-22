@@ -1,23 +1,19 @@
-'use client'
+'use server'
 
 import * as backendservice from "@/Services/DataAPI/DataAPIService"
 import {Product} from "@/Data/Models/Product";
 import styling from "@/app/Shop/[parentcategoryid]/styling.module.css";
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 
-export function Page({params} : {params : {discounteventid: string}}) {
+export async function Page({params} : {params : {discounteventid: string}}) {
 
-    const [eventproducts, setEventProducts] = useState<Product[]>([])
-
+    let eventproducts : Product[] = []
     async function GetEventProducts() {
-        let evenprods : Product[] = await backendservice.GetEventProducts(params.discounteventid)
-        setEventProducts(evenprods)
+        eventproducts = await backendservice.GetEventProducts(params.discounteventid)
     }
 
-    useEffect(() => {
-        GetEventProducts()
-    }, []);
+    GetEventProducts()
 
     return <>
         <div className={styling.productscanvas}>

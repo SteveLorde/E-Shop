@@ -1,6 +1,6 @@
 import {Product} from "@/Data/Models/Product";
 import {element} from "prop-types";
-import {Event} from "@/Data/Models/Event";
+import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 import axios from "axios";
 import {Category, ParentCategory} from "@/Data/Models/Category";
 import {Mail} from "@/Data/Models/Mail";
@@ -99,7 +99,7 @@ export async function GetMostSelling() {
 export async function GetNews() {
     try {
         let response = await axios.get(`${apiurl}/eshop/news/getnews`)
-        let news: Event[] = response.data
+        let news: DiscountEvent[] = response.data
         return news
     } catch (err) {
         console.log(err)

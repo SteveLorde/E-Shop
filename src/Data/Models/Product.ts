@@ -1,4 +1,5 @@
 import {Category} from "@/Data/Models/Category";
+import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 
 export interface Product {
     id : string
@@ -7,7 +8,7 @@ export interface Product {
     description : string
     price : number
     images : string[]
-    discounts : Event[]
     quantityavailable : number
     sellnumber : number
+    discounts : DiscountEvent[]
 }

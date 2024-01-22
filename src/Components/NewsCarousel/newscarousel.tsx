@@ -3,13 +3,13 @@
 import {useEffect, useState} from "react";
 import style from "@/Components/NewsCarousel/style.module.css";
 import {Carousel} from "react-bootstrap";
-import {Event} from "@/Data/Models/Event";
+import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 import Link from "next/link";
 import * as backendservice from "@/Services/DataAPI/DataAPIService";
 
 
 export function NewsCarousel() {
-    const [newstoshow, setNews] = useState<Event[]>([])
+    const [newstoshow, setNews] = useState<DiscountEvent[]>([])
     const [slideindex, setSlideIndex] = useState(0)
 
     function handleSlideSelect(selectedSlideIndex: any) {
@@ -17,7 +17,7 @@ export function NewsCarousel() {
     }
 
     async function GetNews() {
-        let news : Event[] | any = await backendservice.GetNews()
+        let news : DiscountEvent[] | any = await backendservice.GetNews()
         setNews(news)
     }
     useEffect(() => {
@@ -27,7 +27,7 @@ export function NewsCarousel() {
     return <>
         <div className={style.carouselcanvas}>
             <Carousel className={style.carousel} activeIndex={slideindex} onSelect={handleSlideSelect}>
-                {newstoshow?.map((event: Event, index) =>
+                {newstoshow?.map((event: DiscountEvent, index) =>
                     <Carousel.Item className={style.carouselitem} key={index}>
                         <Link href={`/Shop/${event.id}`} className={style.innercarouselitem}>
                             <img className={style.newsimage}
