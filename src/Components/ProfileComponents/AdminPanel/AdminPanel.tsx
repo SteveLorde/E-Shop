@@ -24,10 +24,17 @@ export default function AdminPanel( {params} : { params: {adminid : string} }  )
     return <>
 
         <div>
+            {/*Add Product Form*/}
             <div>
                 <AddProductForm />
             </div>
 
+            {/*Add Event Form*/}
+
+            {/*Search All Events in System*/}
+
+
+            {/*Search All Products in System*/}
             <div>
                 <h2>All Products</h2>
                 <div>
@@ -42,6 +49,8 @@ export default function AdminPanel( {params} : { params: {adminid : string} }  )
                     )}
                 </div>
             </div>
+
+
         </div>
 
     </>

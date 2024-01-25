@@ -22,7 +22,7 @@
 .movingcards {
     display: flex;
     flex-direction: row;
-
+    animation: moveRightToLeft 30s ease-in-out infinite;
 }
 
 .productcard {

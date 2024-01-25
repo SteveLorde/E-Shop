@@ -5,6 +5,7 @@ import axios from "axios";
 import {Category, ParentCategory} from "@/Data/Models/Category";
 import {Mail} from "@/Data/Models/Mail";
 import {Bool} from "reselect/es/types";
+import {config} from "react-transition-group";
 
 export async function GetEventProducts(discounteventid: string) {
     let response = await axios.get(`${apiurl}/eshop/warehouse/geteventproducts/${discounteventid}`)
@@ -16,14 +17,9 @@ export async function GetEventProducts(discounteventid: string) {
 export const apiurl = process.env.NEXT_PUBLIC_API_URL
 
 export async function GetProducts() {
-    try {
         let response = await axios.get(`${apiurl}/eshop/warehouse/getallproducts`)
         let products : Product[] = response.data
         return products
-    }
-    catch (err) {
-        console.log("ERROR 404 FETCHING PRODUCTS")
-    }
 }
 
 export async function GetProduct(productid : string) {
@@ -33,14 +29,9 @@ export async function GetProduct(productid : string) {
 }
 
 export async function SearchProduct(searchname : string) {
-    try {
         let response = await axios.get(`${apiurl}/eshop/warehouse/searchproduct/${searchname}`)
         let searchedproducts : Product[] = response.data
         return searchedproducts
-    }
-    catch (err) {
-        console.error("ERROR 404 FETCHING SEARCHED PRODUCTS")
-    }
 }
 
 export async function AddProduct(newproduct : Product) {
@@ -116,9 +107,17 @@ export async function SendMail(newmail : Mail) {
     } catch (err) {
         console.log(err)
     }
+}
 
+export async function AddEvent(newevent : DiscountEvent) {
+    let response = await axios.post<boolean>(`${apiurl}/eshop/events/addevent`, newevent)
+    return response.data
+}
 
-
+export async function GetEvent(eventid : string) {
+    let response = await axios.get<DiscountEvent>(`${apiurl}/eshop/events/getevent/${eventid}`)
+    let event = response.data
+    return event
 }
 
 

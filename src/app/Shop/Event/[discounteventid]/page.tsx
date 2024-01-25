@@ -6,17 +6,30 @@ import styling from "@/app/Shop/[parentcategoryid]/styling.module.css";
 import Link from "next/link";
 import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 
-export async function Page({params} : {params : {discounteventid: string}}) {
+export async function Page({params} : {params : {discounteventid: string} }) {
 
     let eventproducts : Product[] = []
+    let event : DiscountEvent = {} as DiscountEvent
+
+    async function GetEvent() {
+        event = await backendservice.GetEvent(params.discounteventid)
+    }
+
     async function GetEventProducts() {
         eventproducts = await backendservice.GetEventProducts(params.discounteventid)
     }
 
+    GetEvent()
     GetEventProducts()
 
     return <>
         <div className={styling.productscanvas}>
+
+            <div className={"d-flex"}>
+                <h2>Browsing {event.title}</h2>
+                <p>{event.startdate} - {event.enddate}</p>
+            </div>
+
             {eventproducts?.map((product: Product) =>
                 <Link className={styling.productcard} href={`/Shop/Product/${product.id}`} key={product.id}>
                     <img className={styling.productimage}

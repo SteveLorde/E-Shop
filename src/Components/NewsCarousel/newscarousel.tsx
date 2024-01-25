@@ -29,7 +29,7 @@ export function NewsCarousel() {
             <Carousel className={style.carousel} activeIndex={slideindex} onSelect={handleSlideSelect}>
                 {newstoshow?.map((event: DiscountEvent, index) =>
                     <Carousel.Item className={style.carouselitem} key={index}>
-                        <Link href={`/Shop/${event.id}`} className={style.innercarouselitem}>
+                        <Link href={`/Shop/Event/${event.id}`} className={style.innercarouselitem}>
                             <img className={style.newsimage}
                                  src={`${backendservice.apiurl}/storage/EShopApp/News/${event.id}/Images/${event.image}`}/>
                             <div className={style.newstitles}>
