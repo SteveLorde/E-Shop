@@ -19,8 +19,8 @@ export async function Page({params} : {params : {discounteventid: string} }) {
         eventproducts = await backendservice.GetEventProducts(params.discounteventid)
     }
 
-    GetEvent()
-    GetEventProducts()
+    await GetEvent()
+    await GetEventProducts()
 
     return <>
         <div className={styling.productscanvas}>
@@ -30,7 +30,7 @@ export async function Page({params} : {params : {discounteventid: string} }) {
                 <p>{event.startdate} - {event.enddate}</p>
             </div>
 
-            {eventproducts?.map((product: Product) =>
+            {eventproducts?.map( (product: Product) =>
                 <Link className={styling.productcard} href={`/Shop/Product/${product.id}`} key={product.id}>
                     <img className={styling.productimage}
                          src={`${backendservice.apiurl}/storage/Products/${product.id}/Images/${product.images[0]}`}/>
