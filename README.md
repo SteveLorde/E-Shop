@@ -3,7 +3,7 @@
 <img src="https://i.imgur.com/d7pzEq6.png" alt="cover image" />
 <p align="center" font-size=14px color="grey">current progress (v0.1)</p>
 
-<p text-decoration="underline">features (+planned)</p>
+###features (+planeed)
 
 <ul>
   <li>Browse Products</li>
