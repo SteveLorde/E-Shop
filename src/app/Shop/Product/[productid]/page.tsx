@@ -13,8 +13,8 @@ export default async function Product({params} : {params: {productid : string}})
 
     function CalculateDiscountedPrice() {
         let discountedprice : number = product.price
-        for (let i = 0; i < product.discounts.length; i++) {
-            let discount = product.discounts[i]
+        for (let i = 0; i < product.discountEvents.length; i++) {
+            let discount = product.discountEvents[i]
             if (discount.ispercentage) {
                 discountedprice *= discount.discountamount
             }
@@ -27,7 +27,7 @@ export default async function Product({params} : {params: {productid : string}})
 
     const GetFinalPrice = () => {
         let finalprice: number = product.price
-        if (product.discounts.length > 0) {
+        if (product.discountEvents.length > 0) {
             finalprice = CalculateDiscountedPrice()
             return <div>
                 <p>{product.price}</p>
@@ -42,7 +42,7 @@ export default async function Product({params} : {params: {productid : string}})
         <div className={styling.productpagecanvas}>
             {/* IMAGE*/}
             <div className={styling.productgallery} >
-                <img className={styling.mainimage} src={`${backendservice.apiurl}/storage/Products/${product?.id}/Images/${mainimage}`} />
+                <img className={styling.mainimage} src={`${backendservice.apiurl}/eshopapp/storage/Products/${product?.id}/Images/${mainimage}`} />
                 <div>
                     {product?.images?.map( (image : string) =>
                         <img className={styling.productimages} key={image} src={`${backendservice.apiurl}/storage/eshopapp/Products/${product?.id}/Images/${image}`} />
@@ -57,7 +57,7 @@ export default async function Product({params} : {params: {productid : string}})
             </div>
 
             {/* Buy */}
-            <div className={styling.buysection}>
+            <div className={"d-flex flex-column bg-"}>
                 {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
                 {/* ORIGINAL PRICE && CALCULATE PRICE AFTER DISCOUNTS */}
                 {GetFinalPrice()}

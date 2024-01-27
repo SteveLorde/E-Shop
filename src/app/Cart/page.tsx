@@ -8,6 +8,7 @@ import CartSlice, {AddItem, clearCart, RemoveItem} from "@/Services/StateStore/C
 import styling from "./styling.module.css"
 import {apiurl} from "@/Services/DataAPI/DataAPIService"
 import {CheckoutResultModal} from "@/Components/CheckoutResultModal/CheckoutResultModal";
+import {PurchaseLog} from "@/Data/Models/PurchaseLog";
 
 export default function CartPage() {
     const [cartitems, setCartItems] = useState<CartItem[]>([])
@@ -15,6 +16,10 @@ export default function CartPage() {
     const [totalorder, setTotalOrder] = useState(0)
     const [importandtravelfees, setImportTravelFees] = useState(0)
     const dispatch = useDispatch();
+
+    const [ismodalvisible, setModalVisible] = useState<boolean>(false)
+    const [testcheckout, setTestCheckout] = useState<PurchaseLog>({} as PurchaseLog)
+
 
     function setCart() {
         setCartItems(cartitemsstore)
@@ -38,6 +43,15 @@ export default function CartPage() {
 
     async function ClearCart() {
         dispatch(clearCart())
+    }
+
+    //TEST
+    function TestCheckout() {
+        let purchaselog : PurchaseLog = {
+            checkouton: new Date().getTime(), items: cartitems, totalamount: totalorder, userid: "testid"
+        }
+        setTestCheckout(purchaselog)
+        setModalVisible(true)
     }
 
     useEffect(() => {
@@ -82,12 +96,12 @@ export default function CartPage() {
                 </div>
 
                 <div>
-                    <Link href={''}>Checkout</Link>
+                    <button onClick={() => TestCheckout()}>Checkout Test</button>
                 </div>
             </div>
 
             <div>
-                <CheckoutResultModal />
+                <CheckoutResultModal IsVisible={ismodalvisible} purchaselog={testcheckout} />
             </div>
 
         </div>
