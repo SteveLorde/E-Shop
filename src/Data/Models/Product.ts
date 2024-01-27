@@ -10,5 +10,5 @@ export interface Product {
     images : string[]
     quantityavailable : number
     sellnumber : number
-    discounts : DiscountEvent[]
+    discountEvents : DiscountEvent[]
 }

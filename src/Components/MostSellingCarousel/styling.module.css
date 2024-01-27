@@ -1,0 +1,65 @@
+
+.mostsellingcanvaas {
+    background-color: #dedede;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;
+}
+
+.mostsellingheader {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: 50px;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.movingcards {
+    display: flex;
+    flex-direction: row;
+    animation: moveRightToLeft 30s ease-in-out infinite;
+}
+
+.productcard {
+    margin: 12px;
+    border-radius: 20px;
+    background-color: #cecece;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.productcard:hover {
+    background-color: #bdbdbd;
+}
+
+.productimage {
+    flex: 1;
+    border-radius: 20px 20px 0px 0px;
+    width: max(150px);
+    height: max(50px);
+}
+
+.cardtext {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.cardprice {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+@keyframes moveRightToLeft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

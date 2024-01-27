@@ -1,6 +1,6 @@
 'use client'
 
-import style from "@/app/Homestyle.module.css";
+import style from "@/Components/MostSellingCarousel/styling.module.css";
 import {Product} from "@/Data/Models/Product";
 import Link from "next/link";
 import * as backendservice from "@/Services/DataAPI/DataAPIService";

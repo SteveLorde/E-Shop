@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import * as backendservice from "@/Services/DataAPI/DataAPIService"
 import {useForm} from "react-hook-form";
 import AddProductForm from "@/Components/AddProductForm/AddProductForm";
+import AddEventForm from "@/Components/AddEventForm/AddEventForm";
 
 
 export default function AdminPanel( {params} : { params: {adminid : string} }  ) {
@@ -30,9 +31,16 @@ export default function AdminPanel( {params} : { params: {adminid : string} }  )
             </div>
 
             {/*Add Event Form*/}
+            <AddEventForm></AddEventForm>
 
             {/*Search All Events in System*/}
+            {/*
 
+             <div>
+                <img src={`${backendservice.apiurl}/storage/EShopApp/Events/${event.id}/Images/${}`} />
+            </div>
+
+            */}
 
             {/*Search All Products in System*/}
             <div>

@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import CartSlice, {AddItem, clearCart, RemoveItem} from "@/Services/StateStore/CartSlice";
 import styling from "./styling.module.css"
 import {apiurl} from "@/Services/DataAPI/DataAPIService"
+import {CheckoutResultModal} from "@/Components/CheckoutResultModal/CheckoutResultModal";
 
 export default function CartPage() {
     const [cartitems, setCartItems] = useState<CartItem[]>([])
@@ -14,7 +15,6 @@ export default function CartPage() {
     const [totalorder, setTotalOrder] = useState(0)
     const [importandtravelfees, setImportTravelFees] = useState(0)
     const dispatch = useDispatch();
-
 
     function setCart() {
         setCartItems(cartitemsstore)
@@ -77,7 +77,6 @@ export default function CartPage() {
             {/* CHECKOUT SECTION*/}
             <div className={styling.checkoutsection}>
                 <div>
-
                     <p>Import and Travel fees: +{importandtravelfees} </p>
                     <p>Total Order: {totalorder} Egp</p>
                 </div>
@@ -85,6 +84,10 @@ export default function CartPage() {
                 <div>
                     <Link href={''}>Checkout</Link>
                 </div>
+            </div>
+
+            <div>
+                <CheckoutResultModal />
             </div>
 
         </div>

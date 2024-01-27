@@ -39,8 +39,7 @@
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    justify-items: center;
-    justify-content: center;
+    align-items: center;
 }
 
 .searchinput {

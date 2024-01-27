@@ -25,6 +25,7 @@ export async function GetProducts() {
 export async function GetProduct(productid : string) {
         let response = await axios.get(`${apiurl}/eshop/warehouse/getproduct/${productid}`)
         let product : Product = response.data
+        console.log(product)
         return product
 }
 
@@ -47,7 +48,7 @@ export async function AddProduct(newproduct : Product) {
 
 export async function GetParentCategories() {
     try {
-        let response = await axios.get(`${apiurl}/eshop/warehouse/getparentcategories`)
+        let response = await axios.get(`${apiurl}/eshop/warehouse/getmaincategories`)
         let parentcategories : ParentCategory[] = response.data
         return parentcategories
     }
@@ -58,7 +59,7 @@ export async function GetParentCategories() {
 
 export async function GetCategories(parentcategoryid: string) {
     try {
-        let response = await axios.get(`${apiurl}/eshop/warehouse/getcategories/${parentcategoryid}`)
+        let response = await axios.get(`${apiurl}/eshop/warehouse/getsubcategories/${parentcategoryid}`)
         let categories : Category[] = response.data
         return categories
     }
@@ -87,23 +88,11 @@ export async function GetMostSelling() {
         return mostselling
 }
 
-export async function GetNews() {
+export async function GetEvents() {
     try {
-        let response = await axios.get(`${apiurl}/eshop/news/getnews`)
+        let response = await axios.get(`${apiurl}/eshop/events/getevents`)
         let news: DiscountEvent[] = response.data
         return news
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-//---------------------------------------------------------------------
-
-export async function SendMail(newmail : Mail) {
-    try {
-        let response = await axios.post(`${apiurl}/mail/sendmail`, newmail)
-        let check : Boolean = response.data
-        return check
     } catch (err) {
         console.log(err)
     }
@@ -119,6 +108,20 @@ export async function GetEvent(eventid : string) {
     let event = response.data
     return event
 }
+
+//---------------------------------------------------------------------
+
+export async function SendMail(newmail : Mail) {
+    try {
+        let response = await axios.post(`${apiurl}/mail/sendmail`, newmail)
+        let check : Boolean = response.data
+        return check
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
 
 
 

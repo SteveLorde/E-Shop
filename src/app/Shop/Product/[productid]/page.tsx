@@ -61,7 +61,7 @@ export default async function Product({params} : {params: {productid : string}})
                 {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
                 {/* ORIGINAL PRICE && CALCULATE PRICE AFTER DISCOUNTS */}
                 {GetFinalPrice()}
-                <AddToCartButton params={ {product: product}} />
+                <AddToCartButton product={product} />
             </div>
         </div>
     </>

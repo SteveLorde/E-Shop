@@ -25,7 +25,8 @@ export function Navbar() {
         SetSearchInput(e.target.value)
     }
     function CheckAuthStatus() {
-        if (!localStorage.getItem('usertoken')) {
+        let checkloggedin = localStorage.getItem('usertoken')
+        if (checkloggedin != "" || null || undefined) {
             setAuthStatus('Login/Register')
         } else {
             setAuthStatus('Logout')

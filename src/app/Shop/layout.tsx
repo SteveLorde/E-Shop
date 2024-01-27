@@ -4,7 +4,7 @@ import styles from  "./styles.module.css"
 import {Metadata} from "next";
 
 export const metadata: Metadata = {
-    title: 'Shopping Page',
+    title: 'Browse',
 }
 
 

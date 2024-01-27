@@ -1,4 +1,5 @@
 'use server'
+
 import Link from "next/link";
 import * as backendservice from '@/Services/DataAPI/DataAPIService'
 import {Product} from "@/Data/Models/Product";
@@ -29,7 +30,7 @@ export default async function Shop() {
             <div className={styling.allproductsgrid}>
                 {allproducts?.map( (product : Product) =>
                     <Link href={`Shop/Product/${product.id}`} className={styling.productcard} key={product.name}>
-                        <img className={styling.productimage} src={`${backendservice.apiurl}/storage/Products/${product.id}/Images/${product.images[0]}`} />
+                        <img className={styling.productimage} src={`${backendservice.apiurl}/storage/EShopApp/Products/${product.id}/Images/${product.images[0]}`} />
                         <h2>{product.name}</h2>
                         {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
                         <div>

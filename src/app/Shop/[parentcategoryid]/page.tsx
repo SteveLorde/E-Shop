@@ -49,7 +49,7 @@ export default async function Page( {params} : {params : {parentcategoryid: stri
                 <h3>Browsing Category {subcategories[0].parentCategory.name}</h3>
                 {pageproducts?.map( (product : Product) =>
                     <Link className={styling.productcard} href={`/Shop/Product/${product.id}`} key={product.id}>
-                        <img className={styling.productimage} src={`${backendservice.apiurl}/storage/Products/${product.id}/Images/${product.images[0]}`} />
+                        <img className={styling.productimage} src={`${backendservice.apiurl}/storage/EShopApp/Products/${product.id}/Images/${product.images[0]}`} />
                         <div className={styling.productinfo}>
                             { product.sellnumber > 100 && <p>most selling in {product.category.parentCategory.name} in {product.category.name}</p>}
                             <h2>{product.name}</h2>
