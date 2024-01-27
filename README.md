@@ -9,6 +9,6 @@
   <li>Browse Products</li>
   <li>Discount Events</li>
   <li>Users Authentication</li>
-  <li>Admin Panel (Manage System)</li>
+  <li>Admin Panel (Manage Operations)</li>
   <li>Checkout</li>
 </ul>
