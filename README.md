@@ -7,6 +7,7 @@
 
 <ul>
   <li>Browse Products</li>
+  <li>Search For Products</li>
   <li>Discount Events</li>
   <li>Users Authentication</li>
   <li>Admin Panel (Manage Operations)</li>
