@@ -3,12 +3,12 @@
 import Link from "next/link";
 import * as backendservice from '@/Services/DataAPI/DataAPIService'
 import {Product} from "@/Data/Models/Product";
-import {Category, ParentCategory} from "@/Data/Models/Category";
+import {SubCategory, MainCategory} from "@/Data/Models/Category";
 import styling from "@/app/Shop/styles.module.css"
 //import {useEffect, useState} from "react";
 
 export default async function Shop() {
-    let parentcategories : ParentCategory[] | any = await backendservice.GetParentCategories()
+    let parentcategories : MainCategory[] | any = await backendservice.GetParentCategories()
     let allproducts : Product[] | any = await backendservice.GetProducts()
 
     return <>
@@ -18,7 +18,7 @@ export default async function Shop() {
         <div className={"categorysidebar"}>
             <h3>Categories</h3>
             <div className={"categories"}>
-                {parentcategories?.map( (parentcategory : ParentCategory) =>
+                {parentcategories?.map( (parentcategory : MainCategory) =>
                     <Link className={"categorylink"} key={parentcategory.id} href={`/Shop/${parentcategory.id}`}>{parentcategory.name}</Link>
                 )}
             </div>

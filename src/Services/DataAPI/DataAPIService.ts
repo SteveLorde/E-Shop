@@ -2,7 +2,7 @@ import {Product} from "@/Data/Models/Product";
 import {element} from "prop-types";
 import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 import axios from "axios";
-import {Category, ParentCategory} from "@/Data/Models/Category";
+import {SubCategory, MainCategory} from "@/Data/Models/Category";
 import {Mail} from "@/Data/Models/Mail";
 import {Bool} from "reselect/es/types";
 import {config} from "react-transition-group";
@@ -49,7 +49,7 @@ export async function AddProduct(newproduct : Product) {
 export async function GetParentCategories() {
     try {
         let response = await axios.get(`${apiurl}/eshop/warehouse/getmaincategories`)
-        let parentcategories : ParentCategory[] = response.data
+        let parentcategories : MainCategory[] = response.data
         return parentcategories
     }
     catch (err) {
@@ -60,7 +60,7 @@ export async function GetParentCategories() {
 export async function GetCategories(parentcategoryid: string) {
     try {
         let response = await axios.get(`${apiurl}/eshop/warehouse/getsubcategories/${parentcategoryid}`)
-        let categories : Category[] = response.data
+        let categories : SubCategory[] = response.data
         return categories
     }
     catch (err) {

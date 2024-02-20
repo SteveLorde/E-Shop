@@ -3,12 +3,12 @@
 import {useFieldArray, useForm} from "react-hook-form";
 import * as backendservice from '@/Services/DataAPI/DataAPIService'
 import {useState} from "react";
-import {Category, ParentCategory} from "@/Data/Models/Category";
+import {SubCategory, MainCategory} from "@/Data/Models/Category";
 import {Product} from "@/Data/Models/Product";
 import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 
 export default function AddEventForm() {
-    const [categories, setCategories] = useState<ParentCategory[]>([])
+    const [categories, setCategories] = useState<MainCategory[]>([])
     const {register: neweventform, handleSubmit: neweventsubmit } = useForm<DiscountEvent>()
     let eventimagefile : any
     const [imagespreviews, setImagesPreviews] = useState([])

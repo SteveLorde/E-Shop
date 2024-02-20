@@ -3,11 +3,11 @@
 import {useFieldArray, useForm} from "react-hook-form";
 import * as backendservice from '@/Services/DataAPI/DataAPIService'
 import {useState} from "react";
-import {Category, ParentCategory} from "@/Data/Models/Category";
+import {SubCategory, MainCategory} from "@/Data/Models/Category";
 import {Product} from "@/Data/Models/Product";
 
 export default function AddProductForm() {
-    const [categories, setCategories] = useState<ParentCategory[]>([])
+    const [categories, setCategories] = useState<MainCategory[]>([])
     const {register: newproductform, handleSubmit: newproductsubmit } = useForm<Product>()
     let imagefiles : any
     const [imagespreviews, setImagesPreviews] = useState([])
@@ -29,14 +29,15 @@ export default function AddProductForm() {
 
     async function SubmitNewProduct(newproductreq : Product) {
         let newproduct : Product = {
-            discounts: [],
+            subCategoryId: "",
+            discountEvents: [],
             id: "",
             sellnumber: 0,
             name: newproductreq.name,
             description: newproductreq.description,
             price: newproductreq.price,
             quantityavailable: newproductreq.quantityavailable,
-            category: newproductreq.category,
+            subCategory: newproductreq.subCategory,
             images: newproductreq.images
         }
         let check = await backendservice.AddProduct(newproduct)
@@ -52,11 +53,11 @@ export default function AddProductForm() {
             <h2>Product Images</h2>
             <input type="file" {...newproductform('images')} multiple/>
             <h2>product category</h2>
-            <select {...newproductform('category')}>
-                {categories?.map( (category: ParentCategory, index) =>
+            <select {...newproductform('subCategory')}>
+                {categories?.map( (category: MainCategory, index) =>
                 <div key={index}>
                     <p >{category.name}</p>
-                    {category.categories?.map( (subcategory: Category) =>
+                    {category.categories?.map( (subcategory: SubCategory) =>
                         <option key={subcategory.id}>{subcategory.name}</option>
                     )}
                 </div>

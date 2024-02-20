@@ -1,12 +1,12 @@
-export interface ParentCategory {
+export interface MainCategory {
     id : string
     name : string
-    categories: Category[]
+    categories: SubCategory[]
 }
 
-export interface Category{
+export interface SubCategory {
     id : string
     name : string
-    parentCategoryId : string
-    parentCategory : ParentCategory
+    mainCategoryId : string
+    mainCategory : MainCategory
 }

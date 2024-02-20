@@ -11,10 +11,12 @@ export default function Profile() {
     const [user, setUser] = useState<User>({email: "", id: "", name: "", phonenumber: 0, username: "", usertype: "user"})
 
     async function GetUserInfo() {
-        if (localStorage.getItem("usertoken") != null || "") {
-            let usertoset = await authservice.GetUserInfo()
-            if (usertoset != undefined) {
-                setUser(usertoset)
+        if (typeof localStorage !== "undefined") {
+            if (localStorage.getItem("usertoken") !== "undefined") {
+                let usertoset = await authservice.GetUserInfo()
+                if (usertoset != undefined) {
+                    setUser(usertoset)
+                }
             }
         }
     }

@@ -1,12 +1,29 @@
 .cartpagecanvas {
     display : flex;
     flex-direction: row;
+    background-color: white;
+    margin: 5vw;
+    flex-wrap: wrap;
 }
 
 .cartsection {
     flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.ProductCard {
+    padding: 1vw;
+    gap: 45px;
+    background-color: yellow;
+    border: 1px black;
+}
+
+.ProductImage {
+    width: 100px;
 }
 
 .checkoutsection {

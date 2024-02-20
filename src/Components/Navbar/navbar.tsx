@@ -9,6 +9,8 @@ import {Product} from "@/Data/Models/Product";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "@/Services/StateStore/Store";
 import { useRouter } from 'next/navigation'
+import {apiurl} from "@/Services/DataAPI/DataAPIService";
+
 
 
 
@@ -16,7 +18,7 @@ export function Navbar() {
     const router = useRouter()
     const [shoppingcart, SetShoppingCart] = useState<Product[]>([])
     const [AllQuantity, setCartQuantity] = useState<number>(0)
-    const [authstatus, setAuthStatus] = useState<string>('Login/Register')
+    const [authstatus, setAuthStatus] = useState<string>('')
     const [searchinput, SetSearchInput] = useState<string>("Search for product... ")
     const cartItems = useSelector( (state: RootState) => state.cart.items)
     const dispatch = useDispatch<AppDispatch>()
@@ -25,11 +27,11 @@ export function Navbar() {
         SetSearchInput(e.target.value)
     }
     function CheckAuthStatus() {
-        let checkloggedin = localStorage.getItem('usertoken')
-        if (checkloggedin != "" || null || undefined) {
-            setAuthStatus('Login/Register')
-        } else {
-            setAuthStatus('Logout')
+        if (authservice.CheckLoggedIn()) {
+            setAuthStatus(authservice.CheckLoggedUsername())
+        }
+        else {
+            setAuthStatus("Login / Register")
         }
     }
 
@@ -60,8 +62,8 @@ export function Navbar() {
                 {cartItems.length > 0 &&  <h3 className={styling.cartquantity}>{cartItems.length}</h3>}
             </Link>
 
-            <div>
-                <img alt='' src={''}/>
+            <div className={"d-flex p-2 w-auto rounded-5 bg-secondary"}>
+                {authservice.loggedinuser != undefined && <img alt='' src={`${apiurl}/storage/EShopApp/Users/${authservice.loggedinuser.id}/Images/${authservice.loggedinuser}`}/>}
                 <Link className={styling.authbutton} href={'/Auth'}>{authstatus}</Link>
             </div>
         </div>

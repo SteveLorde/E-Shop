@@ -1,10 +1,11 @@
-import {Category} from "@/Data/Models/Category";
+import {SubCategory} from "@/Data/Models/Category";
 import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 
 export interface Product {
     id : string
     name : string
-    category : Category
+    subCategoryId : string
+    subCategory : SubCategory
     description : string
     price : number
     images : string[]

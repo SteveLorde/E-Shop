@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import * as backendservice from "@/Services/DataAPI/DataAPIService"
-import {Category} from "@/Data/Models/Category";
+import {SubCategory} from "@/Data/Models/Category";
 
 export default function CategoriesSideBar() {
 

@@ -3,10 +3,15 @@ import { User } from "@/Data/Models/User"
 import * as backendservice from "@/Services/DataAPI/DataAPIService"
 import axios from "axios";
 
+let isloggedin = false
+let loggedusername = "Login / Register"
+export let loggedinuser : User = {} as User
+
+
 export async function Login(loginrequest : AuthRequest){
     try {
         let response = await axios.post(`${backendservice.apiurl}/eshop/authentication/login`, loginrequest)
-        if (response.data != null || "") {
+        if (response.data !== null || "") {
             let responsetoken : string = response.data
             localStorage.setItem("usertoken", responsetoken)
             return true
@@ -38,16 +43,45 @@ export async function Register(registerrequest : AuthRequest){
 
 export async function GetUserInfo(){
     try {
-        let usertoken = localStorage.getItem("usertoken")
-        let response = await axios.post(`${backendservice.apiurl}/Authentication/GetUserInfo`, usertoken )
-        let userinfo : User = response.data
+        let axiosapi = axios.create()
+        axiosapi.interceptors.request.use(
+            (config : any) =>  {
+                const token = localStorage.getItem("usertoken")
+                const clonedReq = {
+                    ...config,
+                    headers: {
+                        ...config.headers,
+                        Authorization: `Bearer ${token}`,
+                    },
+                };
+                return clonedReq;
+            },
+            (error) => {
+                // Handle request error
+                return Promise.reject(error);
+            }
+        )
+        let userinfo =  await axiosapi.get<User>(`${backendservice.apiurl}/Authentication/GetUserInfo` ).then( res => res.data)
+        loggedusername = userinfo.name
+        isloggedin = true
+        loggedinuser = userinfo
         return userinfo
     }
     catch (err) {
-        console.log("error getting user info")
+        console.log("error getting user info " + err)
     }
+}
+
+export function CheckLoggedUsername() {
+    return loggedusername
+}
+
+export function CheckLoggedIn() {
+    return isloggedin
 }
 
 export function Logout() {
     localStorage.removeItem("usertoken")
+    isloggedin = false
+    loggedusername = "Login / Register"
 }

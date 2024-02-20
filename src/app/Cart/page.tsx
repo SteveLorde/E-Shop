@@ -9,6 +9,7 @@ import styling from "./styling.module.css"
 import {apiurl} from "@/Services/DataAPI/DataAPIService"
 import {CheckoutResultModal} from "@/Components/CheckoutResultModal/CheckoutResultModal";
 import {PurchaseLog} from "@/Data/Models/PurchaseLog";
+import cs from "classnames"
 
 export default function CartPage() {
     const [cartitems, setCartItems] = useState<CartItem[]>([])
@@ -68,24 +69,25 @@ export default function CartPage() {
             {/* CART SECTION*/}
             <div className={styling.cartsection}>
                 <h3>Your Cart</h3>
-                <div>
+                <div className={"border-1 m-5 gap-5 flex-wrap"}>
                     {cartitems?.map( (item : CartItem, index) =>
-                        <div key={index}>
-                            <div >
-                                <img src={`${apiurl}/storage/Products/${item.product.id}/Images/${item.product.images[0]}`} />
+                        <div className={cs("d-flex flex-row flex-wrap align-items-center align-content-center m-3", styling.ProductCard)} key={index}>
+                            <div className={"d-flex flex-row align-items-center gap-3"} >
+                                <img className={styling.ProductImage} src={`${apiurl}/storage/eshopapp/Products/${item.product.id}/Images/${item.product.images[0]}`}  alt={"product_mainimage"}/>
                                 <p>{item.product.name}</p>
                                 <p>{item.quantity}</p>
                             </div>
 
-                            <div>
-                                <p onClick={ () => DecreaseItem(item)}>-</p>
+                            <div className={"d-flex flex-row flex-wrap gap-4 align-content-center align-items-center"}>
+                                <p>{item.product.price} EGP</p>
+                                <button onClick={ () => DecreaseItem(item)}>-</button>
                                 <p>{item.quantity}</p>
-                                <p onClick={() => IncreaseItem(item)}>+</p>
+                                <button onClick={() => IncreaseItem(item)}>+</button>
                             </div>
                         </div>
                     )}
                 </div>
-                <button onClick={() => ClearCart() }>Clear Cart</button>
+                <button className={"btn btn-sm btn-dark w-25"} onClick={() => ClearCart() }>Clear Cart</button>
             </div>
 
             {/* CHECKOUT SECTION*/}

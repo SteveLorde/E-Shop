@@ -36,7 +36,7 @@ export async function Page({params} : {params : {discounteventid: string} }) {
                          src={`${backendservice.apiurl}/storage/Products/${product.id}/Images/${product.images[0]}`}/>
                     <div className={styling.productinfo}>
                         {product.sellnumber > 100 &&
-                            <p>most selling in {product.category.parentCategory.name} in {product.category.name}</p>}
+                            <p>most selling in {product.subCategory.mainCategory.name} in {product.subCategory.name}</p>}
                         <h2>{product.name}</h2>
                         {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
                     </div>

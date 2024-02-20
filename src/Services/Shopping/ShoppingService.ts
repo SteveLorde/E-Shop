@@ -19,9 +19,28 @@ export async function AddToCart(productid : string) {
 }
 
 export async function Checkout(totalamount : number) {
+
     let cartitems = store.getState().cart.items
     let checkoutreceipt : PurchaseLog = {checkouton: new Date().getTime(), items: cartitems, totalamount: totalamount, userid: ""}
-    let response = await axios.post(`${backendservice.apiurl}/eshop/shopping/checkout`, checkoutreceipt)
+    let axiosapi = axios.create()
+    axiosapi.interceptors.request.use(
+        (config : any) =>  {
+            const token = localStorage.getItem("usertoken")
+            const clonedReq = {
+                ...config,
+                headers: {
+                    ...config.headers,
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            return clonedReq;
+        },
+        (error) => {
+            // Handle request error
+            return Promise.reject(error);
+        }
+    )
+    let response = await axiosapi.post(`${backendservice.apiurl}/eshop/shopping/checkout`, checkoutreceipt)
     let check = response.data
     if (check) {
         return checkoutreceipt
