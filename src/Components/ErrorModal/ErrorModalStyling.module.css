@@ -1,0 +1,14 @@
+.modalcanvas {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: white;
+}
+
+
+.confirmbutton {
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+}

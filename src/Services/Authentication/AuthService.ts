@@ -12,7 +12,7 @@ export async function Login(loginrequest : AuthRequest){
     try {
         let response = await axios.post(`${backendservice.apiurl}/eshop/authentication/login`, loginrequest)
         localStorage.setItem('usertoken', response.data)
-        return true
+        return localStorage.getItem('usertoken') !== 'undefined';
     }
     catch (err) {
         console.log("error login: " + err)
@@ -22,7 +22,7 @@ export async function Login(loginrequest : AuthRequest){
 export async function Register(registerrequest : AuthRequest){
     try {
         let response = await axios.post(`${backendservice.apiurl}/eshop/authentication/register`, registerrequest)
-        return true
+        return response.data === true;
     }
     catch (err) {
         console.log("error registering: " + err)

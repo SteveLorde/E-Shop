@@ -1,12 +1,11 @@
 'use server'
-
 import * as backendservice from "@/Services/DataAPI/DataAPIService"
 import {Product} from "@/Data/Models/Product";
 import styling from "@/app/Shop/[maincategoryid]/styling.module.css";
 import Link from "next/link";
 import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 
-export async function Page({params} : {params : {discounteventid: string} }) {
+export default async function Page( {params} : {params : {discounteventid: string} } ) {
 
     let eventproducts : Product[] = []
     let event : DiscountEvent = {} as DiscountEvent

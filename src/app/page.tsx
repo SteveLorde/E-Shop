@@ -1,7 +1,7 @@
 'use server'
 
 import style from '@/app/Homestyle.module.css'
-import {NewsCarousel} from "@/Components/NewsCarousel/newscarousel";
+import {EventsCarousel} from "@/Components/EventsCarousel/EventsCarousel";
 import {MostSellingCarousel} from "@/Components/MostSellingCarousel/MostSellingCarousel";
 
 export default async function Home() {
@@ -9,7 +9,7 @@ export default async function Home() {
         return <>
             <div className={style.homelayout}>
                 {/* DiscountEvent Canvas */}
-                <NewsCarousel />
+                <EventsCarousel />
 
                 {/* Most Selling past 24 hours */}
                 <MostSellingCarousel />

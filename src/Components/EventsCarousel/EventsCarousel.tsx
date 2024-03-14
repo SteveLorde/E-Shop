@@ -1,14 +1,14 @@
 'use client'
 
 import {useEffect, useState} from "react";
-import style from "@/Components/NewsCarousel/style.module.css";
+import style from "@/Components/EventsCarousel/style.module.css";
 import {Carousel} from "react-bootstrap";
 import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 import Link from "next/link";
 import * as backendservice from "@/Services/DataAPI/DataAPIService";
 
 
-export function NewsCarousel() {
+export function EventsCarousel() {
     const [newstoshow, setNews] = useState<DiscountEvent[]>([])
     const [slideindex, setSlideIndex] = useState(0)
 
