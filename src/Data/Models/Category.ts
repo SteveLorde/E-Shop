@@ -1,3 +1,5 @@
+import {Product} from "@/Data/Models/Product";
+
 export interface MainCategory {
     id : string
     name : string
@@ -9,4 +11,5 @@ export interface SubCategory {
     name : string
     mainCategoryId : string
     mainCategory : MainCategory
+    products : Product[]
 }

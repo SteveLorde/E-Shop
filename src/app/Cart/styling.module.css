@@ -1,6 +1,8 @@
 .cartpagecanvas {
     display : flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     background-color: white;
     margin: 5vw;
     flex-wrap: wrap;
@@ -17,9 +19,10 @@
 
 .ProductCard {
     padding: 1vw;
-    gap: 45px;
-    background-color: yellow;
-    border: 1px black;
+    gap: 10px;
+    background-color: white;
+    border-radius: 5px;
+    border: solid 1px #cbcbcb;
 }
 
 .ProductImage {
@@ -30,4 +33,14 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.checkoutbutton {
+    text-decoration: none;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
 }

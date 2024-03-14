@@ -2,7 +2,7 @@
 
 import * as backendservice from "@/Services/DataAPI/DataAPIService"
 import {Product} from "@/Data/Models/Product";
-import styling from "@/app/Shop/[parentcategoryid]/styling.module.css";
+import styling from "@/app/Shop/[maincategoryid]/styling.module.css";
 import Link from "next/link";
 import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 
@@ -38,7 +38,7 @@ export async function Page({params} : {params : {discounteventid: string} }) {
                         {product.sellnumber > 100 &&
                             <p>most selling in {product.subCategory.mainCategory.name} in {product.subCategory.name}</p>}
                         <h2>{product.name}</h2>
-                        {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
+                        {product.quantity > 0 && <p className={"productstocked"}>in stock</p>}
                     </div>
                     <p className={styling.productprice}>{product.price} egp</p>
                 </Link>

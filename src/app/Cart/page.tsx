@@ -72,10 +72,9 @@ export default function CartPage() {
                 <div className={"border-1 m-5 gap-5 flex-wrap"}>
                     {cartitems?.map( (item : CartItem, index) =>
                         <div className={cs("d-flex flex-row flex-wrap align-items-center align-content-center m-3", styling.ProductCard)} key={index}>
-                            <div className={"d-flex flex-row align-items-center gap-3"} >
+                            <div className={"d-flex flex-row align-items-center justify-content-center gap-3"} >
                                 <img className={styling.ProductImage} src={`${apiurl}/storage/eshopapp/Products/${item.product.id}/Images/${item.product.images[0]}`}  alt={"product_mainimage"}/>
                                 <p>{item.product.name}</p>
-                                <p>{item.quantity}</p>
                             </div>
 
                             <div className={"d-flex flex-row flex-wrap gap-4 align-content-center align-items-center"}>
@@ -98,7 +97,7 @@ export default function CartPage() {
                 </div>
 
                 <div>
-                    <button onClick={() => TestCheckout()}>Checkout Test</button>
+                    <button className={styling.checkoutbutton} onClick={() => TestCheckout()}>Checkout Test</button>
                 </div>
             </div>
 

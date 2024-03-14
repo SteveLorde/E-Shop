@@ -71,18 +71,15 @@
 
 
 .cart {
-    padding: 5px;
     padding-left: 25px;
     padding-right: 25px;
     background-color: #dedede;
     display: flex;
     flex-direction: row;
     align-items: center;
-    align-content: center;
-    justify-items: center;
-    justify-content: center;
-    gap: 50px;
+    gap: 30px;
     border-radius: 100px;
+    text-decoration: none;
 }
 
 .cart:hover {
@@ -96,7 +93,8 @@
 }
 
 .cartquantity {
-
+    margin-top: 5px;
+    font-weight: bold;
 }
 
 .authbutton {

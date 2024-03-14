@@ -74,7 +74,7 @@ export default async function Product({params} : {params: {productid : string}})
 
                 {/* Buy */}
                 <div className={"d-flex flex-column align-content-center align-items-center m-4 p-4"}>
-                    {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
+                    {product.quantity > 0 && <p className={"productstocked"}>in stock</p>}
                     {/* ORIGINAL PRICE && CALCULATE PRICE AFTER DISCOUNTS */}
                     {GetFinalPrice()}
                     <AddToCartButton product={product}/>

@@ -11,14 +11,8 @@ export let loggedinuser : User = {} as User
 export async function Login(loginrequest : AuthRequest){
     try {
         let response = await axios.post(`${backendservice.apiurl}/eshop/authentication/login`, loginrequest)
-        if (response.data !== null || "") {
-            let responsetoken : string = response.data
-            localStorage.setItem("usertoken", responsetoken)
-            return true
-        }
-        else {
-            return false
-        }
+        localStorage.setItem('usertoken', response.data)
+        return true
     }
     catch (err) {
         console.log("error login: " + err)
@@ -28,13 +22,7 @@ export async function Login(loginrequest : AuthRequest){
 export async function Register(registerrequest : AuthRequest){
     try {
         let response = await axios.post(`${backendservice.apiurl}/eshop/authentication/register`, registerrequest)
-        if (response.data != false || "" || null) {
-            localStorage.setItem('usertoken' , response.data)
-            return true
-        }
-        else {
-            return false
-        }
+        return true
     }
     catch (err) {
         console.log("error registering: " + err)

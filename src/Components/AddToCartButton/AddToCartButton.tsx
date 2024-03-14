@@ -12,6 +12,6 @@ export default function AddToCartButton({product} : {product : Product}) {
     let additem = () => dispatch(AddItem(product))
 
     return <>
-    <button className={"p-3 bg-success border-0 rounded-5"} onClick={additem}>Add To Cart {product.name}</button>
+    <button className={"p-3 bg-success border-0 rounded-5 text-white fw-bold"} onClick={additem}>Add To Cart {product.name}</button>
     </>
 }

@@ -9,7 +9,7 @@ export interface Product {
     description : string
     price : number
     images : string[]
-    quantityavailable : number
+    quantity : number
     sellnumber : number
     discountEvents : DiscountEvent[]
 }

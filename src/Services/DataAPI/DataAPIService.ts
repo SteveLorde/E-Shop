@@ -16,6 +16,7 @@ export async function GetEventProducts(discounteventid: string) {
 
 export const apiurl = process.env.NEXT_PUBLIC_API_URL
 
+
 export async function GetProducts() {
         let response = await axios.get(`${apiurl}/eshop/warehouse/getallproducts`)
         let products : Product[] = response.data
@@ -77,6 +78,11 @@ export async function GetCategoryProducts(categoryid : string) {
     catch (err) {
         console.log(err)
     }
+}
+
+export async function GetSubCategory(subcategoryid : string) {
+    let response = await axios.get<SubCategory>(`${apiurl}/eshop/warehouse/getsubcategory/${subcategoryid}`).then(res => res.data)
+    return response
 }
 
 //---------------------------------------------------------------------

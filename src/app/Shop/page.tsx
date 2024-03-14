@@ -32,7 +32,7 @@ export default async function Shop() {
                     <Link href={`Shop/Product/${product.id}`} className={styling.productcard} key={product.name}>
                         <img className={styling.productimage} src={`${backendservice.apiurl}/storage/EShopApp/Products/${product.id}/Images/${product.images[0]}`} />
                         <h2>{product.name}</h2>
-                        {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
+                        {product.quantity > 0 && <p className={"productstocked"}>in stock</p>}
                         <div>
                             <p className={styling.productprice}>{product.price} egp</p>
                         </div>

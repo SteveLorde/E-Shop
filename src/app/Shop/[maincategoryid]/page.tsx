@@ -5,14 +5,14 @@ import Link from "next/link";
 import {SubCategory, MainCategory} from "@/Data/Models/Category";
 import styling from "./styling.module.css"
 
-export default async function Page( {params} : {params : {parentcategoryid: string}}) {
+export default async function Page( {params} : {params : {maincategoryid: string}}) {
 
     let subcategories : SubCategory[] = []
     let pageproducts : Product[] = []
 
     async function GetSubCategories() {
         try {
-            let subcategoriesresponse = await backendservice.GetCategories(params.parentcategoryid)
+            let subcategoriesresponse = await backendservice.GetCategories(params.maincategoryid)
             if (subcategoriesresponse != undefined) {
                 subcategories = subcategoriesresponse
             }
@@ -32,7 +32,7 @@ export default async function Page( {params} : {params : {parentcategoryid: stri
     }
 
     await GetSubCategories()
-    await GetCategoryProducts(params.parentcategoryid)
+    await GetCategoryProducts(params.maincategoryid)
 
     return <>
         <div className={styling.categorypage}>
@@ -40,7 +40,7 @@ export default async function Page( {params} : {params : {parentcategoryid: stri
                 <Link className={styling.TopCategoryLink} href={'/Shop'}>Top - Categories</Link>
                 <div className={"categories"}>
                     {subcategories?.map( (subcategory : SubCategory) =>
-                        <Link className={"categorylink"} key={subcategory.id} href={`/Shop/${params.parentcategoryid}/${subcategory.id}`}>{subcategory.name}</Link>
+                        <Link className={"categorylink"} key={subcategory.id} href={`/Shop/${params.maincategoryid}/${subcategory.id}`}>{subcategory.name}</Link>
                     )}
                 </div>
             </div>
@@ -53,7 +53,7 @@ export default async function Page( {params} : {params : {parentcategoryid: stri
                         <div className={styling.productinfo}>
                             { product.sellnumber > 100 && <p>most selling in {product.subCategory.mainCategory.name} in {product.subCategory.name}</p>}
                             <h2>{product.name}</h2>
-                            {product.quantityavailable > 0 && <p className={"productstocked"}>in stock</p>}
+                            {product.quantity > 0 && <p className={"productstocked"}>in stock</p>}
                         </div>
                         <p className={styling.productprice}>{product.price} egp</p>
                     </Link>

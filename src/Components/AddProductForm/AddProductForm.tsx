@@ -36,7 +36,7 @@ export default function AddProductForm() {
             name: newproductreq.name,
             description: newproductreq.description,
             price: newproductreq.price,
-            quantityavailable: newproductreq.quantityavailable,
+            quantity: newproductreq.quantity,
             subCategory: newproductreq.subCategory,
             images: newproductreq.images
         }

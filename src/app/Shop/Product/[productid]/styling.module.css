@@ -1,13 +1,12 @@
 
 .productpagecanvas {
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     background-color: #dedede;
     margin-left: 100px;
     margin-right: 100px;
     align-items: center;
-    flex-wrap: wrap;
     justify-content: center;
 
 }
@@ -34,9 +33,7 @@
 }
 
 .productdetails {
-    flex-grow: 1;
-    margin-top: 20px;
-    margin-left: 70px;
+    margin-left: 10px;
 }
 
 .producttitle {
@@ -60,8 +57,11 @@
     color: white;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 900px) {
     .productdetails {
         margin-right: 0px;
+    }
+    .productpagecanvas {
+        flex-direction: column;
     }
 }

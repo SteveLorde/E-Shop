@@ -5,9 +5,10 @@
     align-items: center;
     justify-content: center;
     justify-items: center;
+    margin-top: 50px;
 }
 
 .footerrights {
-    color: rgba(128, 128, 128, 0.5);
+    color: rgba(65, 65, 65, 0.5);
     font-weight: 400;
 }
