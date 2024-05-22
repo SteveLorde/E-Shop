@@ -52,8 +52,7 @@ export function Navbar() {
             </ul>
 
             <div className={styling.searchbar}>
-                <input className={styling.searchinput}  type="text" value={searchinput} onChange={handleinputchange}>
-                </input>
+                <input className={styling.searchinput}  type="text" value={searchinput} onChange={handleinputchange}></input>
                 <img className={styling.searchicon} src="/Icons/magnifyglass.png" onClick={SearchProduct} />
             </div>
 

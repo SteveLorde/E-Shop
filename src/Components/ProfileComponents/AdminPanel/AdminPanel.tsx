@@ -4,8 +4,8 @@ import {Product} from "@/Data/Models/Product";
 import {useEffect, useState} from "react";
 import * as backendservice from "@/Services/DataAPI/DataAPIService"
 import {useForm} from "react-hook-form";
-import AddProductForm from "@/Components/AddProductForm/AddProductForm";
-import AddEventForm from "@/Components/AddEventForm/AddEventForm";
+import AddProductForm from "@/Components/Admin/AddProductForm/AddProductForm";
+import AddEventForm from "@/Components/Admin/AddEventForm/AddEventForm";
 
 
 export default function AdminPanel( {params} : { params: {adminid : string} }  ) {

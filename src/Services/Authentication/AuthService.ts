@@ -50,7 +50,7 @@ export async function GetUserInfo(){
             }
         )
         let userinfo =  await axiosapi.get<User>(`${backendservice.apiurl}/Authentication/GetUserInfo` ).then( res => res.data)
-        loggedusername = userinfo.name
+        loggedusername = userinfo.username
         isloggedin = true
         loggedinuser = userinfo
         return userinfo

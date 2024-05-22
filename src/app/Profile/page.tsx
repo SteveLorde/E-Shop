@@ -32,7 +32,7 @@ export default function Profile() {
             <h2>Personal Info</h2>
             <div>
                 <p>Username: {user.username}</p>
-                <p>Name: {user.name}</p>
+                <p>Name: {user.fullname}</p>
                 <div>
                     <p>Password: xxxxxx</p>
                     <button>Change Password</button>

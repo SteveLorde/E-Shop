@@ -1,16 +1,16 @@
-
-
-root {
-
-}
+@import "@/Styles/GlobalStyles.module.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
 
 body {
   margin: 0;
   background-color: #efefef;
 }
 
-h1,h2,h3,p {
-  font-family: Inter, serif;
+h1,h2,h3,p, span {
+  font-family: Dubai, serif;
 }
 
 .sidecategorylayout {

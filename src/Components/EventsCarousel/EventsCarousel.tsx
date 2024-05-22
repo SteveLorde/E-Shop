@@ -1,31 +1,43 @@
 'use client'
 
 import {useEffect, useState} from "react";
-import style from "@/Components/EventsCarousel/style.module.css";
-import {Carousel} from "react-bootstrap";
+import style2 from "@/Components/EventsCarousel/style2.module.css"
 import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 import Link from "next/link";
 import * as backendservice from "@/Services/DataAPI/DataAPIService";
+import {Swiper, SwiperSlide} from "swiper/react"
+
 
 
 export function EventsCarousel() {
-    const [newstoshow, setNews] = useState<DiscountEvent[]>([])
-    const [slideindex, setSlideIndex] = useState(0)
-
-    function handleSlideSelect(selectedSlideIndex: any) {
-        setSlideIndex(selectedSlideIndex)
-    }
+    const [eventsToShow, setEventsToShow] = useState<DiscountEvent[]>([])
 
     async function GetNews() {
         let news : DiscountEvent[] | any = await backendservice.GetEvents()
-        setNews(news)
+        setEventsToShow(news)
     }
     useEffect(() => {
         GetNews()
     }, []);
 
     return <>
-        <div className={style.carouselcanvas}>
+        <div className={style2.container}>
+            <Swiper pagination={{type: "bullets"}}>
+                {eventsToShow.map((event, index) => (
+                    <SwiperSlide key={event.id}>
+                        <img src={`${backendservice.apiurl}/storage/EShopApp/Events/${event.id}/Images/${event.image}`} alt={event.title}/>
+                        <h2>{event.title}</h2>
+                        <p>{event.subtitle}</p>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
+    </>
+
+
+}
+
+/*
             <Carousel className={style.carousel} activeIndex={slideindex} onSelect={handleSlideSelect}>
                 {newstoshow?.map((event: DiscountEvent, index) =>
                     <Carousel.Item className={style.carouselitem} key={index}>
@@ -40,9 +52,4 @@ export function EventsCarousel() {
                     </Carousel.Item>
                 )}
             </Carousel>
-        </div>
-
-    </>
-
-
-}
+ */

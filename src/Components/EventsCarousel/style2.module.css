@@ -1,0 +1,21 @@
+.container {
+    position: relative;
+    width: 100vw;
+}
+
+.container_carousel {
+    width: 100%;
+}
+
+.slideIndex {
+    position: absolute;
+    bottom: 100px;
+    background-color: #cccccc;
+    border-radius: 100px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.slideIndex:focus {
+    background-color: white;
+}

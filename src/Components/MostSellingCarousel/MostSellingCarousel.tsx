@@ -20,8 +20,11 @@ export function MostSellingCarousel() {
     }, []);
 
     return <>
-        <div className={style.mostsellingcanvaas}>
-            <h3 className={style.mostsellingheader}>24Hrs Most Selling</h3>
+        <div className={style.mostsellingcontainer}>
+            <div>
+                <h3 className={style.mostsellingheader}>Most Selling</h3>
+                <span>in last 24hrs</span>
+            </div>
             <div className={style.movingcards}>
                 {mostselling?.map((product: Product) =>
                     <Link key={product.id} href={`/Shop/Product/${product.id}`} className={style.productcard}>
