@@ -6,6 +6,9 @@ import {DiscountEvent} from "@/Data/Models/DiscountEvent";
 import Link from "next/link";
 import * as backendservice from "@/Services/DataAPI/DataAPIService";
 import {Swiper, SwiperSlide} from "swiper/react"
+import {Navigation, Pagination} from "swiper/modules";
+import 'swiper/swiper-bundle.css';
+
 
 
 
@@ -22,12 +25,16 @@ export function EventsCarousel() {
 
     return <>
         <div className={style2.container}>
-            <Swiper pagination={{type: "bullets"}}>
+            <Swiper className={style2.container_carousel} modules={[Navigation, Pagination]} navigation={false} pagination={{type: "bullets", clickable: true}}>
                 {eventsToShow.map((event, index) => (
-                    <SwiperSlide key={event.id}>
-                        <img src={`${backendservice.apiurl}/storage/EShopApp/Events/${event.id}/Images/${event.image}`} alt={event.title}/>
-                        <h2>{event.title}</h2>
-                        <p>{event.subtitle}</p>
+                    <SwiperSlide className={style2.container_carousel_slide} key={event.id}>
+                        <div>
+                            <img className={style2.image} src={`${backendservice.apiurl}/storage/EShopApp/Events/${event.id}/Images/${event.image}`} alt={event.title}/>
+                            <div className={style2.container_carousel_slide_text}>
+                                <h2 className={style2.title}>{event.title}</h2>
+                                <p className={style2.subtitle}>{event.subtitle}</p>
+                            </div>
+                        </div>
                     </SwiperSlide>
                 ))}
             </Swiper>

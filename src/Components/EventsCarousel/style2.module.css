@@ -1,21 +1,38 @@
 .container {
-    position: relative;
     width: 100vw;
 }
 
 .container_carousel {
-    width: 100%;
+    width: 100vw;
 }
 
-.slideIndex {
+.container_carousel_slide {
+    position: relative;
+}
+
+.container_carousel_slide_text {
     position: absolute;
-    bottom: 100px;
-    background-color: #cccccc;
-    border-radius: 100px;
-    padding: 5px;
-    cursor: pointer;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 100px;
+    gap: 100px
 }
 
-.slideIndex:focus {
-    background-color: white;
+.image {
+    width: 100vw;
+    height: 50vh;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+}
+
+.subtitle {
+    font-size: 24px;
+    font-weight: normal;
+    color: white;
 }
