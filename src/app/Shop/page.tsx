@@ -33,8 +33,9 @@ export default async function Shop() {
                         <img className={styling.productimage} src={`${backendservice.apiurl}/storage/EShopApp/Products/${product.id}/Images/${product.images[0]}`} />
                         <h2>{product.name}</h2>
                         {product.quantity > 0 && <p className={"productstocked"}>in stock</p>}
-                        <div>
-                            <p className={styling.productprice}>{product.price} egp</p>
+                        <div className={"flex flex-row items-center gap-2"}>
+                            <p className={styling.productprice}>{product.price}</p>
+                            <p className={styling.priceCurrency}>EGP</p>
                         </div>
                     </Link>
                 )}

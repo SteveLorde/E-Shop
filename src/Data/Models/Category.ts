@@ -3,7 +3,7 @@ import {Product} from "@/Data/Models/Product";
 export interface MainCategory {
     id : string
     name : string
-    categories: SubCategory[]
+    subCategories: SubCategory[]
 }
 
 export interface SubCategory {

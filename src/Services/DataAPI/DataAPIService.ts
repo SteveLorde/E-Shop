@@ -5,7 +5,6 @@ import axios from "axios";
 import {SubCategory, MainCategory} from "@/Data/Models/Category";
 import {Mail} from "@/Data/Models/Mail";
 import {Bool} from "reselect/es/types";
-import {config} from "react-transition-group";
 
 export async function GetEventProducts(discounteventid: string) {
     let response = await axios.get(`${apiurl}/eshop/warehouse/geteventproducts/${discounteventid}`)
@@ -48,14 +47,8 @@ export async function AddProduct(newproduct : Product) {
 //---------------------------------------------------------------------
 
 export async function GetParentCategories() {
-    try {
-        let response = await axios.get(`${apiurl}/eshop/warehouse/getmaincategories`)
-        let parentcategories : MainCategory[] = response.data
+        let parentcategories = await axios.get(`${apiurl}/eshop/warehouse/getmaincategories`).then(res => res.data).catch(res => console.log(res))
         return parentcategories
-    }
-    catch (err) {
-        console.log("ERROR 404 FETCHING Parent CATEGORIES")
-    }
 }
 
 export async function GetCategories(parentcategoryid: string) {

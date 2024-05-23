@@ -4,13 +4,19 @@
 @tailwind utilities;
 @tailwind variants;
 
+:root {
+  --accent-color: #7346B9;
+}
+
+
+
 body {
   margin: 0;
   background-color: #efefef;
 }
 
-h1,h2,h3,p, span {
-  font-family: Dubai, serif;
+h1,h2,h3,p, span, Link {
+  font-family: Dubai, sans-serif;
 }
 
 .sidecategorylayout {
@@ -22,6 +28,14 @@ Link, link {
   text-decoration: none;
 }
 
+.btn {
+
+}
+
+.btn-secondary {
+
+}
+
 .categorysidebar {
   padding-left: 25px;
   padding-right: 70px;
@@ -29,6 +43,7 @@ Link, link {
 
 .categorylink {
   text-decoration: none;
+  color: var(--accent-color);
 }
 
 .categories {
@@ -44,3 +59,32 @@ Link, link {
   font-weight: 500;
 }
 
+.swiper-pagination-bullet {
+  background: white;
+  color: white;
+}
+
+.swiper-pagination-bullet:active {
+  background: white;
+  color: white;
+}
+
+@keyframes popFadeIn {
+  0% {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

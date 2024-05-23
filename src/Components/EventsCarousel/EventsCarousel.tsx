@@ -28,8 +28,10 @@ export function EventsCarousel() {
             <Swiper className={style2.container_carousel} modules={[Navigation, Pagination]} navigation={false} pagination={{type: "bullets", clickable: true}}>
                 {eventsToShow.map((event, index) => (
                     <SwiperSlide className={style2.container_carousel_slide} key={event.id}>
-                        <div>
-                            <img className={style2.image} src={`${backendservice.apiurl}/storage/EShopApp/Events/${event.id}/Images/${event.image}`} alt={event.title}/>
+                        <div className={style2.slideContainer}>
+                            <div className={style2.slideImageContainer}>
+                                <img className={style2.image} src={`${backendservice.apiurl}/storage/EShopApp/Events/${event.id}/Images/${event.image}`} alt={event.title}/>
+                            </div>
                             <div className={style2.container_carousel_slide_text}>
                                 <h2 className={style2.title}>{event.title}</h2>
                                 <p className={style2.subtitle}>{event.subtitle}</p>
